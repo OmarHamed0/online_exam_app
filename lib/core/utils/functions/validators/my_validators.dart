@@ -36,7 +36,7 @@ class MyValidators {
   }
 
   static String? validatePasswordConfirmation(
-      {String? password, String? confirmPassword}) {
+      {String? password, String? confirmPassword }) {
     if (_isEmpty(password)) {
       return 'Password is required';
     }

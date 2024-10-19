@@ -7,4 +7,5 @@ class AppColors{
   static const Color  kDarkGray=Color(0xFFb6A6A6);
   static const  Color kRed=Colors.red;
   static const   kBlue=Color(0xFF02369C);
+  static const lightBlue=Color(0xFFEDEFF3);
 }
