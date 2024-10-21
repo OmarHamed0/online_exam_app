@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam/config/routes/page_route_name.dart';
-import 'package:online_exam/core/caching/token_manger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam/feature/home_layout/view/view_model/home_layout_cubit.dart';
+import 'package:online_exam/feature/home_layout/view/view_model/home_layout_states.dart';
+import 'package:online_exam/feature/home_layout/view/widget/custom_bottom_navigation_bar.dart';
 
-class HomeLayoutView extends StatelessWidget {
-  const HomeLayoutView({super.key});
+import '../../../dependency_injection/di.dart';
+class MainHomeScreen extends StatelessWidget {
+  static String routeName = "MainHomeScreen";
+  var viewModel = getIt.get<MainHomeCubit>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: TextButton(onPressed: (){
-          TokenManger.deleteToken().then((value) => Navigator.pushNamedAndRemoveUntil(
-            context,PageRouteName.login,(route) => false,
-          ),);
-        },child: Icon(Icons.cabin),),
-      ),
-    );
+    return BlocConsumer<MainHomeCubit, MainHomeStates>(
+        bloc: viewModel,
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Scaffold(
+              bottomNavigationBar: CustomBottomNavigationBar(
+                  selectedIndex: viewModel.selectedIndex,
+                  context: context,
+                  onTabFunction: (index) {
+                    viewModel.changeBottomNavigationBar(index);
+                  }),
+              body: viewModel.tabs[viewModel.selectedIndex]);
+        });
   }
 }

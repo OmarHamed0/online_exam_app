@@ -7,7 +7,6 @@ import 'config/routes/page_route_name.dart';
 import 'config/theme/app_theme.dart';
 class OnlineExam extends StatelessWidget {
   const OnlineExam({super.key});
-
   @override
   Widget build(BuildContext context) {
     return  ScreenUtilInit(

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import '../../../../core/api/api_constants.dart';
-import '../mdoel/response/app_user/app_user_model.dart';
+import '../../../../core/caching/token_manger.dart';
 import '../mdoel/response/subject_model/Subject_model.dart';
 import 'home_layout_api_manger.dart';
 import 'package:injectable/injectable.dart';
@@ -22,14 +22,10 @@ class HomeLayoutApiMangerImpl implements HomeLayoutApiManger {
   }
 
   @override
-  Future<SubjectModel> getAllSubject() async {
-    var response = await _dio.get(ApiConstants.getAllSubjectsApi);
-    return SubjectModel.fromJson(response.data);
-  }
-
-  @override
-  Future<AppUserModel?> getProfileDats() async {
-    var response = await _dio.get(ApiConstants.profileData);
-    return AppUserModel.fromJson(response.data);
+  Future<SubjectModel?> getAllSubjects() async {
+    var token = await TokenManger.getToken();
+    var response = await _dio.get(ApiConstants.getAllSubjectsApi,);
+    SubjectModel getAllSubjects = SubjectModel.fromJson(response.data,);
+    return getAllSubjects;
   }
 }
