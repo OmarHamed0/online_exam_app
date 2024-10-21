@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/config/routes/page_route_name.dart';
+import 'package:online_exam/core/caching/token_manger.dart';
 import '../../../../../core/utils/Functions/validators/my_validators.dart';
 import '../../../../../core/utils/widget/custom_text_form_field.dart';
 
@@ -15,7 +16,9 @@ class ProfileWidget extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, PageRouteName.login);
+              TokenManger.deleteToken();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  PageRouteName.login, (route) => false);
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),

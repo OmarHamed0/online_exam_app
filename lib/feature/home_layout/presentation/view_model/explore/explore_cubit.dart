@@ -19,7 +19,6 @@ class ExploreCubit extends Cubit<ExploreStates> {
       subjectList = result.data?.subjects ?? [];
       emit(ExploreSuccessState(getAllSubjects: result.data));
     } else if (result is Fail<SubjectModel?>) {
-      print("Error: ${result.exception}");
       emit(ExploreErrorState(errorMessage: result.exception));
     }
   }

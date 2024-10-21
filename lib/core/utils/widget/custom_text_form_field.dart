@@ -39,58 +39,66 @@ class CustomTextFromField extends StatelessWidget {
       onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-          filled: true,
-          errorMaxLines: 1,
-          helperMaxLines: 1,
-          fillColor: AppColors.kWhite,
-          hintText: hintText,
-          hintStyle: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.kDarkGray,
+        filled: true,
+        errorMaxLines: 1,
+        helperMaxLines: 1,
+        fillColor: AppColors.kWhite,
+        hintText: hintText,
+        hintStyle: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.kDarkGray,
+        ),
+        suffixIcon: suffixIcon,
+        labelText: labelText,
+        enabled: true,
+        floatingLabelStyle:
+            MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+          if (states.contains(MaterialState.error)) {
+            return TextStyle(color: AppColors.kRed);
+          } else if (states.contains(MaterialState.focused)) {
+            return TextStyle(color: AppColors.kGray);
+          }
+          return TextStyle(color: Colors.grey);
+        }),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        labelStyle: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.kGray,
+        ),
+        prefixIcon: prefixIcon,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.sp),
+          borderSide: BorderSide(
+            color: AppColors.kGray,
           ),
-          suffixIcon: suffixIcon,
-          labelText: labelText,
-          enabled: true,
-
-          labelStyle: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.kDarkGray,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.kGray,
           ),
-          prefixIcon: prefixIcon,
-
-          border: OutlineInputBorder(
-
-            borderRadius: BorderRadius.circular(16.sp),
-            borderSide: BorderSide(
-              color: AppColors.kGray,
-            ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.kGray,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.kGray,
-            ),
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.kRed,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.kGray,
-            ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.kRed,
           ),
-          focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.kRed,
-            ),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.kGray,
-            ),
-          ),
-          errorStyle: const TextStyle(
-            color: Colors.red,
-            fontSize: 17,
-          )),
+        ),
+        errorStyle: const TextStyle(
+          color: AppColors.kRed,
+          fontSize: 14,
+        ),
+      ),
     );
   }
 }

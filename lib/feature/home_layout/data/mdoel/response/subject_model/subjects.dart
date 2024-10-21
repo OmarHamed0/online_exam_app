@@ -33,11 +33,11 @@ class Subjects {
     return map;
   }
 
-  SubjectEntity toSubject(){
-    return SubjectEntity(
+  SubjectsEntity toSubject(){
+    return SubjectsEntity(
       name: name,
       id: id,
-      imageIcon: icon
+        icon: icon
     );
   }
 

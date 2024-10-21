@@ -24,7 +24,7 @@ class RegisterFormFieldWidget extends StatelessWidget {
           CustomTextFromField(
             inputType: TextInputType.name,
             labelText: registerViewModel.appLocalizations!.userName,
-            hintText: registerViewModel.appLocalizations!.enterEmail,
+            hintText: registerViewModel.appLocalizations!.enterYouUserName,
             controller: registerViewModel.userNameController,
             validator: (value) => MyValidators.validateNotEmpty(value: value),
           ),
@@ -71,24 +71,32 @@ class RegisterFormFieldWidget extends StatelessWidget {
           SizedBox(
             height: 24.h,
           ),
-          CustomTextFromField(
-            inputType: TextInputType.text,
-            labelText: registerViewModel.appLocalizations!.password,
-            hintText: registerViewModel.appLocalizations!.enterPassword,
-            controller: registerViewModel.passwordController,
-            validator: (value) => MyValidators.validatePassword(value),
-          ),
-          SizedBox(
-            height: 24.h,
-          ),
-          CustomTextFromField(
-            inputType: TextInputType.text,
-            labelText: registerViewModel.appLocalizations!.rePassword,
-            hintText: registerViewModel.appLocalizations!.rePassword,
-            controller: registerViewModel.rePasswordController,
-            validator: (value) => MyValidators.validatePasswordConfirmation(
-                password: registerViewModel.passwordController.text,
-                confirmPassword: registerViewModel.rePasswordController.text),
+          Row(
+            children: [
+              Expanded(
+                child: CustomTextFromField(
+                  inputType: TextInputType.text,
+                  labelText: registerViewModel.appLocalizations!.password,
+                  hintText: registerViewModel.appLocalizations!.enterPassword,
+                  controller: registerViewModel.passwordController,
+                  validator: (value) => MyValidators.validatePassword(value),
+                ),
+              ),
+              SizedBox(
+                width: 16.h,
+              ),
+              Expanded(
+                child: CustomTextFromField(
+                  inputType: TextInputType.text,
+                  labelText: registerViewModel.appLocalizations!.rePassword,
+                  hintText: registerViewModel.appLocalizations!.rePassword,
+                  controller: registerViewModel.rePasswordController,
+                  validator: (value) => MyValidators.validatePasswordConfirmation(
+                      password: registerViewModel.passwordController.text,
+                      confirmPassword: registerViewModel.rePasswordController.text),
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 24.h,
@@ -107,8 +115,8 @@ class RegisterFormFieldWidget extends StatelessWidget {
             height: 5.h,
           ),
           PromPtoWidget(
-            text: registerViewModel.appLocalizations!.dontHaveAnAccount,
-            textButton: registerViewModel.appLocalizations!.signUp,
+            text: registerViewModel.appLocalizations!.alreadyHaveAnAccount,
+            textButton: registerViewModel.appLocalizations!.login,
             onPressed: () =>Navigator.pushNamedAndRemoveUntil(context, PageRouteName.login,(route) => false,)
           ),
         ],

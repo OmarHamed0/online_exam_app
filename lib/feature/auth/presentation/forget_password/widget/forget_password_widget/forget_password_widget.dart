@@ -6,7 +6,6 @@ import '../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../core/utils/Functions/validators/my_validators.dart';
 import '../../../../../../core/utils/functions/dialogs/app_dialogs.dart';
 import '../../../../../../core/utils/widget/custom_text_form_field.dart';
-import '../../../widget/submit_button_widget.dart';
 import '../../view_model/forget_password_cubit.dart';
 import '../../view_model/forget_password_event.dart';
 import 'widget/submit_forget_password_widget.dart';
@@ -37,6 +36,7 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
             height: 16.h,
           ),
           Text(
+            textAlign: TextAlign.start,
             forgetPasswordViewModel.appLocalizations!.titleForgetPassword,
             style: AppFonts.font14GrayWeight400,
           ),

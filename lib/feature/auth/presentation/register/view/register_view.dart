@@ -53,7 +53,7 @@ class _RegisterViewState extends BaseView<RegisterView, RegisterCubit> {
           AppDialogs.showLoading(context: context);
         case RegisterSuccessStata():
           Navigator.pop(context);
-           goToNextLogin();
+          goToNextMainHome();
         case RegisterErrorStata():
           Navigator.pop(context);
           AppDialogs.showErrorDialog(context: context,errorMassage:  registerState.errorMassage ?? "");
@@ -63,8 +63,8 @@ class _RegisterViewState extends BaseView<RegisterView, RegisterCubit> {
     }
   }
 
-  goToNextLogin(){
+  goToNextMainHome(){
     return Navigator.pushNamedAndRemoveUntil(context,
-        PageRouteName.login, (route) => false,);
+        PageRouteName.mainHome, (route) => false,);
   }
 }

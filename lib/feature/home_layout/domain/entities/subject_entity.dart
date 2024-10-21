@@ -1,7 +1,14 @@
-class SubjectEntity {
+class SubjectsEntity {
+  SubjectsEntity({
+    this.id,
+    this.name,
+    this.icon,
+    this.createdAt,});
+
   String? id;
   String? name;
-  String? imageIcon;
+  String? icon;
+  String? createdAt;
 
-  SubjectEntity({this.id, this.name, this.imageIcon});
+
 }
