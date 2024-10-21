@@ -24,7 +24,7 @@ class _ForgetPasswordViewState
     return BlocProvider(
       create: (context) => viewModel,
       child: Scaffold(
-        appBar: AppBar(title: Text(viewModel.appLocalizations!.forgetPassword),),
+        appBar: AppBar(title: Text(viewModel.appLocalizations!.password),),
 
        body:  Padding(
       padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 16.w),
