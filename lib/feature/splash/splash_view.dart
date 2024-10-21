@@ -7,6 +7,7 @@ import 'package:online_exam/core/styles/images/app_images.dart';
 
 import '../../config/routes/page_route_name.dart';
 import '../../core/caching/token_manger.dart';
+import '../../core/styles/colors/app_colors.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -45,11 +46,14 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return Lottie.asset(
-      AppImages.splash,
-      height: double.infinity,
-      width: double.infinity,
-      fit: BoxFit.fill
+    return Container(
+      color: AppColors.kWhite,
+      child: Lottie.asset(
+          AppImages.splash,
+          height: double.infinity,
+          width: double.infinity,
+          fit: BoxFit.contain
+      ),
     );
   }
 }
