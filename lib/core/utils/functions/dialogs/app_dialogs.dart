@@ -17,7 +17,7 @@ class AppDialogs{
         context: context,
         builder: (context) {
       return  Lottie.asset(
-        AppImages.loading,
+        AppImages.loading1,
         height: 10.h,
         width: 10.w,
       );
