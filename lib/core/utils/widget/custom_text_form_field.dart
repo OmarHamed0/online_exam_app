@@ -37,6 +37,7 @@ class CustomTextFromField extends StatelessWidget {
       obscureText: isObscureText,
       maxLines: maxLine,
       onChanged: onChanged,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
           filled: true,
           errorMaxLines: 1,
@@ -51,13 +52,16 @@ class CustomTextFromField extends StatelessWidget {
           suffixIcon: suffixIcon,
           labelText: labelText,
           enabled: true,
+
           labelStyle: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
             color: AppColors.kDarkGray,
           ),
           prefixIcon: prefixIcon,
+
           border: OutlineInputBorder(
+
             borderRadius: BorderRadius.circular(16.sp),
             borderSide: BorderSide(
               color: AppColors.kGray,
