@@ -42,10 +42,6 @@ import '../feature/home_layout/data/data_source/explore/explore_remote_data_sour
     as _i298;
 import '../feature/home_layout/data/data_source/explore/explore_remote_data_source/explore_remote_data_source_impl.dart'
     as _i514;
-import '../feature/home_layout/data/data_source/profile/profile_remote_data_source/profile_remote_data_source.dart'
-    as _i873;
-import '../feature/home_layout/data/data_source/profile/profile_remote_data_source/profile_remote_data_source_impl.dart'
-    as _i841;
 import '../feature/home_layout/data/data_source/result/result_offline_data_source/result_offline_data_source.dart'
     as _i99;
 import '../feature/home_layout/data/data_source/result/result_offline_data_source/result_offline_data_source_impl.dart'
@@ -56,8 +52,6 @@ import '../feature/home_layout/data/data_source/result/result_remote_data_source
     as _i931;
 import '../feature/home_layout/data/repository/explore_repository_impl.dart'
     as _i743;
-import '../feature/home_layout/data/repository/profile_repository_impl.dart'
-    as _i596;
 import '../feature/home_layout/data/repository/result_repository_impl.dart'
     as _i610;
 import '../feature/home_layout/domain/repository/explore_repository.dart'
@@ -66,12 +60,17 @@ import '../feature/home_layout/domain/repository/profile_repository.dart'
     as _i323;
 import '../feature/home_layout/domain/repository/result_repository.dart'
     as _i930;
+import '../feature/home_layout/domain/use_case/explore/get_all_subject_use_case.dart'
+    as _i417;
 import '../feature/home_layout/domain/use_case/profile/get_profile_data_use_case.dart'
     as _i712;
+import '../feature/home_layout/presentation/view_model/explore/explore_cubit.dart'
+    as _i19;
 import '../feature/home_layout/presentation/view_model/profile/profile_cubit.dart'
     as _i394;
 import '../feature/home_layout/presentation/view_model/result/profile_cubit.dart'
     as _i842;
+import '../feature/home_layout/view/view_model/home_layout_cubit.dart' as _i15;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -84,15 +83,19 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i15.MainHomeCubit>(() => _i15.MainHomeCubit());
     gh.factory<_i410.ResultRemoteDataSource>(
         () => _i931.ResultRemoteDataSourceImpl());
     gh.factory<_i863.AuthApiManger>(() => _i188.AuthApiMangerImpl());
     gh.factory<_i930.ResultRepository>(() => _i610.ResultRepositoryImpl());
-    gh.factory<_i298.ExploreRemoteDataSource>(
-        () => _i514.ExploreRemoteDataSourceImpl());
     gh.factory<_i139.ExploreOfflineDataSource>(
         () => _i124.ExploreOfflineDataSourceImpl());
+    gh.factory<_i712.GetProfileDataUseCase>(() => _i712.GetProfileDataUseCase(
+        profileRepository: gh<_i323.ProfileRepository>()));
     gh.factory<_i37.HomeLayoutApiManger>(() => _i323.HomeLayoutApiMangerImpl());
+    gh.factory<_i298.ExploreRemoteDataSource>(() =>
+        _i514.ExploreRemoteDataSourceImpl(
+            apiManger: gh<_i37.HomeLayoutApiManger>()));
     gh.factory<_i649.AuthRemoteDataSource>(() =>
         _i446.AuthRemoteDataSourceImpl(apiManger: gh<_i863.AuthApiManger>()));
     gh.factory<_i99.ResultOfflineDataSource>(
@@ -103,9 +106,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i3.AuthRepository>(() => _i461.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i649.AuthRemoteDataSource>()));
-    gh.factory<_i873.ProfileRemoteDataSource>(() =>
-        _i841.ProfileRemoteDataSourceImpl(
-            homeLayoutApiManger: gh<_i37.HomeLayoutApiManger>()));
+    gh.factory<_i417.GetAllSubjectsUseCase>(() =>
+        _i417.GetAllSubjectsUseCase(repository: gh<_i755.ExploreRepository>()));
+    gh.factory<_i394.ProfileCubit>(
+        () => _i394.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
+    gh.factory<_i842.ProfileCubit>(
+        () => _i842.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
     gh.factory<_i253.RegisterUseCase>(
         () => _i253.RegisterUseCase(authRepository: gh<_i3.AuthRepository>()));
     gh.factory<_i226.VerifyResetCodeUseCase>(() =>
@@ -116,8 +122,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i549.LoginUseCase(gh<_i3.AuthRepository>()));
     gh.factory<_i203.ResetPasswordUseCase>(
         () => _i203.ResetPasswordUseCase(gh<_i3.AuthRepository>()));
-    gh.factory<_i323.ProfileRepository>(() => _i596.ProfileRepositoryImpl(
-        profileRemoteDataSource: gh<_i873.ProfileRemoteDataSource>()));
+    gh.factory<_i19.ExploreCubit>(
+        () => _i19.ExploreCubit(useCase: gh<_i417.GetAllSubjectsUseCase>()));
     gh.factory<_i447.ForgetPasswordCubit>(() => _i447.ForgetPasswordCubit(
           gh<_i597.ForgetPasswordUseCase>(),
           gh<_i203.ResetPasswordUseCase>(),
@@ -127,12 +133,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i122.RegisterCubit(gh<_i253.RegisterUseCase>()));
     gh.factory<_i228.LoginCubit>(
         () => _i228.LoginCubit(gh<_i549.LoginUseCase>()));
-    gh.factory<_i712.GetProfileDataUseCase>(() => _i712.GetProfileDataUseCase(
-        profileRepository: gh<_i323.ProfileRepository>()));
-    gh.factory<_i394.ProfileCubit>(
-        () => _i394.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
-    gh.factory<_i842.ProfileCubit>(
-        () => _i842.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
     return this;
   }
 }
