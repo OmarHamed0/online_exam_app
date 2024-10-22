@@ -24,7 +24,13 @@ class HomeLayoutApiMangerImpl implements HomeLayoutApiManger {
   @override
   Future<SubjectModel?> getAllSubjects() async {
     var token = await TokenManger.getToken();
-    var response = await _dio.get(ApiConstants.getAllSubjectsApi,);
+    var response = await _dio.get(ApiConstants.getAllSubjectsApi,
+    options: Options(
+      headers: {
+        "token":token
+      }
+    )
+    );
     SubjectModel getAllSubjects = SubjectModel.fromJson(response.data,);
     return getAllSubjects;
   }
