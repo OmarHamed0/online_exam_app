@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/feature/home_layout/presentation/widget/explore/widgets/custom_search.dart';
-import 'package:online_exam/feature/home_layout/presentation/widget/explore/widgets/explore_container.dart';
-import '../../../../../core/styles/colors/app_colors.dart';
-import '../../../../../core/styles/fonts/app_fonts.dart';
-import '../../../../../dependency_injection/di.dart';
-import '../../view_model/explore/explore_cubit.dart';
-import '../../view_model/explore/explore_state.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/explore_widget/widgets/custom_search.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/explore_widget/widgets/explore_container.dart';
+import '../../../../../../core/styles/colors/app_colors.dart';
+import '../../../../../../core/styles/fonts/app_fonts.dart';
+import '../../../../../../dependency_injection/di.dart';
+import '../../../view_model/explore/explore_cubit.dart';
+import '../../../view_model/explore/explore_state.dart';
 
 class ExploreScreen extends StatelessWidget {
   static  String routeName = "ExploreScreen";

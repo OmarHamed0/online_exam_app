@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../config/routes/page_route_name.dart';
-import '../../../../../../core/styles/colors/app_colors.dart';
-import '../../../../../../core/styles/fonts/app_fonts.dart';
-import '../../../../data/mdoel/response/subject_model/subjects.dart';
+import '../../../../../../../config/routes/page_route_name.dart';
+import '../../../../../../../core/styles/colors/app_colors.dart';
+import '../../../../../../../core/styles/fonts/app_fonts.dart';
+import '../../../../../data/mdoel/response/subject_model/subjects.dart';
 class ExploreContainer extends StatelessWidget {
   Subjects subjects;
   ExploreContainer({required this.subjects});
