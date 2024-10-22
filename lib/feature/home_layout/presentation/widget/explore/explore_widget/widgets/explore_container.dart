@@ -13,7 +13,7 @@ class ExploreContainer extends StatelessWidget {
       onTap: (){
         Navigator.pushNamed(
           context,
-          PageRouteName.specificSubjectScreen,
+          PageRouteName.getAllExamsScreen,
           arguments: subjects,
         );
       },

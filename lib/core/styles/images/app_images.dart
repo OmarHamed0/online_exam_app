@@ -9,4 +9,7 @@ class AppImages{
   static const loading1="assets/images/loading1.json";
   static const success="assets/images/success.json";
   static const profit="assets/images/Profit.png";
+  static const alarm="assets/images/alarm.png";
+  static const sandClock="assets/images/sendClock.png";
+
 }

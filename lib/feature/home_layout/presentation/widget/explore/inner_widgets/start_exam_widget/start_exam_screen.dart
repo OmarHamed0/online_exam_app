@@ -15,7 +15,7 @@ class StartExamScreen extends StatelessWidget {
       appBar: AppBar(
         leading: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, PageRouteName.specificSubjectScreen);
+              Navigator.pushNamed(context, PageRouteName.getAllExamsScreen);
             },
             child: Icon(Icons.arrow_back_ios_rounded)),
       ),

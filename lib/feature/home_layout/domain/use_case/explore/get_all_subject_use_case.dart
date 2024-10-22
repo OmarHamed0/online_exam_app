@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/api/api_result.dart';
 import '../../../data/mdoel/response/subject_model/Subject_model.dart';
 import '../../repository/explore_repository.dart';

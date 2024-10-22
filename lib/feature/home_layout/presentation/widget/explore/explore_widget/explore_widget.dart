@@ -6,8 +6,8 @@ import 'package:online_exam/feature/home_layout/presentation/widget/explore/expl
 import '../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../dependency_injection/di.dart';
-import '../../../view_model/explore/explore_cubit.dart';
-import '../../../view_model/explore/explore_state.dart';
+import '../../../view_model/explore/get_all_subjects_view_model/get_all_subjects_cubit.dart';
+import '../../../view_model/explore/get_all_subjects_view_model/get_all_subjects_state.dart';
 
 class ExploreScreen extends StatelessWidget {
   static  String routeName = "ExploreScreen";
@@ -15,7 +15,7 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExploreCubit, ExploreStates>(
+    return BlocBuilder<ExploreCubit, GetAllSubjectsStates>(
         bloc: viewModel..getAllSubjects(),
         builder: (context, state) {
           return Scaffold(
@@ -47,7 +47,7 @@ class ExploreScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                state is ExploreSuccessState
+                state is GetAllSubjectsSuccessState
                     ? Expanded(
                   child: GridView.builder(
                       shrinkWrap: true,

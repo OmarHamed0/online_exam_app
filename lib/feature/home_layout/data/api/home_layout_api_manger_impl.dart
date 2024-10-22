@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exams_model/GetAllExamsModel.dart';
 import '../../../../core/api/api_constants.dart';
 import '../../../../core/caching/token_manger.dart';
 import '../mdoel/response/subject_model/Subject_model.dart';
@@ -25,13 +26,21 @@ class HomeLayoutApiMangerImpl implements HomeLayoutApiManger {
   Future<SubjectModel?> getAllSubjects() async {
     var token = await TokenManger.getToken();
     var response = await _dio.get(ApiConstants.getAllSubjectsApi,
-    options: Options(
-      headers: {
-        "token":token
-      }
-    )
+        options: Options(headers: {"token": token}));
+    SubjectModel getAllSubjects = SubjectModel.fromJson(
+      response.data,
     );
-    SubjectModel getAllSubjects = SubjectModel.fromJson(response.data,);
     return getAllSubjects;
+  }
+
+  @override
+  Future<GetAllExamsModel?> getAllExams() async {
+    var token = await TokenManger.getToken();
+    var response = await _dio.get(
+      ApiConstants.getAllExamsApi,
+      options: Options(headers: {"token": token}),
+    );
+    GetAllExamsModel getAllExams = GetAllExamsModel.fromJson(response.data);
+    return getAllExams;
   }
 }
