@@ -9,4 +9,5 @@ class PageRouteName{
   static const String startExamScreen="startExamScreen";
   static const String questionsScreen="questionsScreen";
   static const String resultAnswerScreen="resultAnswerScreen";
+  static const String examScoreScreen="examScoreScreen";
 }

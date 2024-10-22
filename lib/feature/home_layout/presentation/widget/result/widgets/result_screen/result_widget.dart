@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
-import 'package:online_exam/feature/home_layout/presentation/widget/result/widgets/result_container.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/result/widgets/result_screen/widgets/result_container.dart';
 
-import '../../../../../core/styles/fonts/app_fonts.dart';
+import '../../../../../../../core/styles/fonts/app_fonts.dart';
 
 class ResultWidget extends StatelessWidget {
   static const String routeName = "ResultScreen";

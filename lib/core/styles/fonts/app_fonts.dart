@@ -27,6 +27,11 @@ class AppFonts {
       fontSize: 13.sp,
       decoration: TextDecoration.underline,
       decorationStyle: TextDecorationStyle.double);
+  static TextStyle font20BlackWeight500 = TextStyle(
+    color: AppColors.kBlack,
+    fontWeight: FontWeight.w500,
+    fontSize: 20.sp,
+  );
 
   static TextStyle font14BlackWeight400 = TextStyle(
       color: AppColors.kBlack, fontWeight: FontWeight.w400, fontSize: 14.sp);
