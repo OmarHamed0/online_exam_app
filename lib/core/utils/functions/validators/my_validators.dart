@@ -5,7 +5,14 @@ class MyValidators {
     }
     return null;
   }
-
+  static String ? validateName(String ? value){
+    if(_isEmpty(value)) {
+      return "Please Enter Name ";
+    }if(value!.length < 3 ){
+      return  "length must be at least 3 characters long ";
+    }
+    return null;
+  }
   static String? validateEmail(String? value) {
     if (_isEmpty(value)) {
       return ("Email is required");
@@ -71,4 +78,7 @@ Prefix is 10, 11, 12 or 15 only""";
   static bool _isEmpty(String? value) {
     return value == null || value.trim().isEmpty;
   }
+
+
+
 }

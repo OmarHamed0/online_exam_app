@@ -25,15 +25,6 @@ class AppUserModel {
     }
     return map;
   }
-  AppUserEntity ?  toAppUserEntity(){
-    return AppUserEntity(
-      phone: user?.phone,
-      username: user?.username,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      email:user?.email,
-      id: user?.id
-    );
-  }
+
 
 }

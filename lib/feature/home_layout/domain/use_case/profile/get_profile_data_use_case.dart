@@ -10,6 +10,6 @@ class GetProfileDataUseCase{
  GetProfileDataUseCase({required this.profileRepository});
 
  Future<Result<AppUserEntity?>>invoke(){
-   return profileRepository.getLoggedUserInfo();
+   return profileRepository.getProfileData();
  }
 }

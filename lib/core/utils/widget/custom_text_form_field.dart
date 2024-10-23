@@ -4,21 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../styles/colors/app_colors.dart';
 
 class CustomTextFromField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final String labelText;
+  final TextEditingController? controller;
+  final String ? hintText;
+  final String ? labelText;
+  final String ? initialValue;
   final String? Function(String?)? validator;
+  final Color  labelColors;
   final bool isObscureText;
   final TextInputType inputType;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final int ? maxLength;
   final void Function(String)? onChanged;
   final int maxLine;
   const CustomTextFromField({
     super.key,
-    required this.controller,
-    required this.hintText,
-    required this.labelText,
+     this.controller,
+     this.hintText,
+     this.labelText,
     this.validator,
     this.isObscureText = false,
     this.inputType = TextInputType.none,
@@ -26,17 +29,21 @@ class CustomTextFromField extends StatelessWidget {
     this.prefixIcon,
     this.maxLine = 1,
     this.onChanged,
+    this.initialValue,
+    this.labelColors =AppColors.kDarkGray, this.maxLength,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength:maxLength ,
       controller: controller,
       validator: validator,
       keyboardType: inputType,
       obscureText: isObscureText,
       maxLines: maxLine,
       onChanged: onChanged,
+       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         filled: true,
@@ -47,25 +54,25 @@ class CustomTextFromField extends StatelessWidget {
         hintStyle: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.kDarkGray,
+          color:labelColors,
         ),
         suffixIcon: suffixIcon,
         labelText: labelText,
         enabled: true,
         floatingLabelStyle:
-            MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
-          if (states.contains(MaterialState.error)) {
-            return TextStyle(color: AppColors.kRed);
+            WidgetStateTextStyle.resolveWith((Set<MaterialState> states) {
+          if (states.contains(WidgetState.error)) {
+            return const TextStyle(color: AppColors.kRed);
           } else if (states.contains(MaterialState.focused)) {
             return TextStyle(color: AppColors.kGray);
           }
-          return TextStyle(color: Colors.grey);
+          return const TextStyle(color: Colors.grey);
         }),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         labelStyle: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.kGray,
+          color:   AppColors.kBlack,
         ),
         prefixIcon: prefixIcon,
         border: OutlineInputBorder(
@@ -89,7 +96,7 @@ class CustomTextFromField extends StatelessWidget {
             color: AppColors.kRed,
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.kRed,
           ),

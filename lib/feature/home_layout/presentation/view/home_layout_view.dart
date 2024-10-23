@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam/feature/home_layout/view/view_model/home_layout_cubit.dart';
-import 'package:online_exam/feature/home_layout/view/view_model/home_layout_states.dart';
-import 'package:online_exam/feature/home_layout/view/widget/custom_bottom_navigation_bar.dart';
+import 'package:online_exam/feature/home_layout/presentation/view_model/home_loyout/home_layout_cubit.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/custom_bottom_navigation_bar.dart';
 
-import '../../../dependency_injection/di.dart';
+import '../../../../dependency_injection/di.dart';
+import '../view_model/home_loyout/home_layout_states.dart';
 class MainHomeScreen extends StatelessWidget {
   static String routeName = "MainHomeScreen";
   var viewModel = getIt.get<MainHomeCubit>();
+
+  MainHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

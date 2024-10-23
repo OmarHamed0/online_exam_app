@@ -37,5 +37,10 @@
   "resetPassword": "إعادة تعيين كلمة المرور",
   "titleResetPassword": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير واحد",
   "enterNewPassword": "أدخل كلمة المرور الجديدة",
-  "newPassword": "كلمة المرور الجديدة"
+  "newPassword": "كلمة المرور الجديدة",
+  "dontHaveAnAccount?": "ليس لديك حساب ",
+  "update": "تحديث",
+  "profile": "ملف شخصى",
+  "change": "تغيير",
+  "currentPassword": "كلمة المرور الحالية"
 }

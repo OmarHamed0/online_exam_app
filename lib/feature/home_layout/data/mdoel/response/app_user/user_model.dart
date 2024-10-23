@@ -58,4 +58,16 @@ class UserModel {
     return map;
   }
 
+
+    AppUserEntity  appUserEntity(){
+    return AppUserEntity(
+        phone:phone ,
+        username:username ,
+        firstName:firstName ,
+        lastName: lastName,
+        email: email,
+        id: id ,
+      );
+    }
+
   }
