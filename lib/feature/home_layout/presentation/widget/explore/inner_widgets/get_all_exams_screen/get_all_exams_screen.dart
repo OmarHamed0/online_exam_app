@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/dependency_injection/di.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_cubit.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_state.dart';
-import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/specific_subject_screen/widgets/get_all_exams%20_container.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/get_all_exams_screen/widgets/get_all_exams%20_container.dart';
 import '../../../../../../../config/routes/page_route_name.dart';
 import '../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../core/styles/fonts/app_fonts.dart';

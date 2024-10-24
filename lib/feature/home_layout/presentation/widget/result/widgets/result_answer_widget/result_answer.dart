@@ -38,7 +38,7 @@ class ResultAnswerScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-                child: QuestionAnswerContainer(),
+          //      child: QuestionAnswerContainer(),
               ),
             ),
             Padding(
@@ -57,7 +57,7 @@ class ResultAnswerScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-                child: QuestionAnswerContainer(),
+             //   child: QuestionAnswerContainer(),
               ),
             ),
             Padding(
@@ -76,7 +76,7 @@ class ResultAnswerScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-                child: QuestionAnswerContainer(),
+            //    child: QuestionAnswerContainer(),
               ),
             ),
             Padding(
@@ -95,7 +95,7 @@ class ResultAnswerScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-                child: QuestionAnswerContainer(),
+             //   child: QuestionAnswerContainer(),
               ),
             ),
           ],

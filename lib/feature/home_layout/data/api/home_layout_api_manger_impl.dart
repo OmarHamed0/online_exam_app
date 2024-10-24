@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exams_model/GetAllExamsModel.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart';
 import '../../../../core/api/api_constants.dart';
 import '../../../../core/caching/token_manger.dart';
 import '../mdoel/response/subject_model/Subject_model.dart';
@@ -43,4 +44,15 @@ class HomeLayoutApiMangerImpl implements HomeLayoutApiManger {
     GetAllExamsModel getAllExams = GetAllExamsModel.fromJson(response.data);
     return getAllExams;
   }
+
+  @override
+  Future<GetAllQuestionsModel?> getAllQuestions() async {
+    var token = await TokenManger.getToken();
+    var response = await _dio.get(ApiConstants.getAllQuestionsApi,
+        options: Options(headers: {"token": token}));
+    GetAllQuestionsModel getAllQuestions =
+        GetAllQuestionsModel.fromJson(response.data);
+    return getAllQuestions;
+  }
+
 }

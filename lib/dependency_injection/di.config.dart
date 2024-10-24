@@ -62,12 +62,16 @@ import '../feature/home_layout/domain/repository/result_repository.dart'
     as _i930;
 import '../feature/home_layout/domain/use_case/explore/get_all_exams_use_case.dart'
     as _i1054;
+import '../feature/home_layout/domain/use_case/explore/get_all_questions_use_case.dart'
+    as _i647;
 import '../feature/home_layout/domain/use_case/explore/get_all_subject_use_case.dart'
     as _i417;
 import '../feature/home_layout/domain/use_case/profile/get_profile_data_use_case.dart'
     as _i712;
 import '../feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_cubit.dart'
     as _i855;
+import '../feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_cubite.dart'
+    as _i673;
 import '../feature/home_layout/presentation/view_model/explore/get_all_subjects_view_model/get_all_subjects_cubit.dart'
     as _i338;
 import '../feature/home_layout/presentation/view_model/profile/profile_cubit.dart'
@@ -110,10 +114,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i3.AuthRepository>(() => _i461.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i649.AuthRemoteDataSource>()));
-    gh.factory<_i417.GetAllSubjectsUseCase>(() =>
-        _i417.GetAllSubjectsUseCase(repository: gh<_i755.ExploreRepository>()));
     gh.factory<_i1054.GetAllExamsUseCase>(() =>
         _i1054.GetAllExamsUseCase(repository: gh<_i755.ExploreRepository>()));
+    gh.factory<_i647.GetAllQuestionsUseCase>(() => _i647.GetAllQuestionsUseCase(
+        repository: gh<_i755.ExploreRepository>()));
+    gh.factory<_i417.GetAllSubjectsUseCase>(() =>
+        _i417.GetAllSubjectsUseCase(repository: gh<_i755.ExploreRepository>()));
     gh.factory<_i394.ProfileCubit>(
         () => _i394.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
     gh.factory<_i842.ProfileCubit>(
@@ -130,6 +136,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i203.ResetPasswordUseCase(gh<_i3.AuthRepository>()));
     gh.factory<_i855.GetAllExamsCubit>(
         () => _i855.GetAllExamsCubit(useCase: gh<_i1054.GetAllExamsUseCase>()));
+    gh.factory<_i673.GetAllQuestionsCubit>(() => _i673.GetAllQuestionsCubit(
+        useCase: gh<_i647.GetAllQuestionsUseCase>()));
     gh.factory<_i338.ExploreCubit>(
         () => _i338.ExploreCubit(useCase: gh<_i417.GetAllSubjectsUseCase>()));
     gh.factory<_i447.ForgetPasswordCubit>(() => _i447.ForgetPasswordCubit(

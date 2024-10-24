@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../../core/styles/fonts/app_fonts.dart';
+
 class QuestionAnswerContainer extends StatefulWidget {
+  final Map<String, dynamic> question;
+  QuestionAnswerContainer({required this.question});
   @override
   State<QuestionAnswerContainer> createState() => _QuestionContainerState();
 }
 
 class _QuestionContainerState extends State<QuestionAnswerContainer> {
   int selectedOption = -1;
-  List<String> options = [
-    "It's going to rain today.",
-    "Its going to rain today.",
-    "Its going to rain today.",
-    "Its going to rain today."
-  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +22,7 @@ class _QuestionContainerState extends State<QuestionAnswerContainer> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Select the correctly punctuated \n sentence.",
+                child: Text(widget.question['question'],
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: AppColors.kBlack,
@@ -37,9 +33,9 @@ class _QuestionContainerState extends State<QuestionAnswerContainer> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: options.length,
+              itemCount: widget.question['options'].length,
               itemBuilder: (context, index) {
-                return option(index, options[index]);
+                return option(index, widget.question['options'][index]);
               },
             ),
           ),

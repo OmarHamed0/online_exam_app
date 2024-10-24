@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exams_model/GetAllExamsModel.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart';
 
 import '../../../../../../core/api/api_result.dart';
 import '../../../../../../core/api/execute_api_call.dart';
@@ -23,6 +24,14 @@ class ExploreRemoteDataSourceImpl implements ExploreRemoteDataSource {
   Future<Result<GetAllExamsModel?>> getAllExams() async {
     return executeApiCall<GetAllExamsModel?>(apiCall: () async {
       var response = await apiManger.getAllExams();
+      return response;
+    });
+  }
+
+  @override
+  Future<Result<GetAllQuestionsModel?>> getAllQuestions() async {
+    return executeApiCall<GetAllQuestionsModel?>(apiCall: () async {
+      var response = await apiManger.getAllQuestions();
       return response;
     });
   }
