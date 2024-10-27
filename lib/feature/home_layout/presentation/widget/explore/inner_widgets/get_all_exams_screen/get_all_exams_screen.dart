@@ -56,7 +56,7 @@ class GetAllExamsScreen extends StatelessWidget {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 1,
-                                childAspectRatio: 2.8,
+                                childAspectRatio: 2.5,
                               ),
                               itemBuilder: (context, index) {
                                 return GetAllExamsContainer(

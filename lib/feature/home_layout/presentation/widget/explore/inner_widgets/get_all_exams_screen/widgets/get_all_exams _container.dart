@@ -9,7 +9,10 @@ import '../../../../../../data/mdoel/response/gel_all_exams_model/Exams.dart';
 class GetAllExamsContainer extends StatelessWidget {
   final Exams exams;
   final String subjectIcon;
-  GetAllExamsContainer({required this.exams, required this.subjectIcon,});
+  GetAllExamsContainer({
+    required this.exams,
+    required this.subjectIcon,
+  });
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -23,26 +26,40 @@ class GetAllExamsContainer extends StatelessWidget {
                       duration: exams.duration.toString(),
                       minutes: exams.duration.toString(),
                       noOfQuestions: exams.numberOfQuestions.toString(),
-                  subjectIcon: subjectIcon.toString(),
+                      subjectIcon: subjectIcon.toString(),
                     )));
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
-          height: 90.h,
           decoration: BoxDecoration(
+            color: Colors.white,
             borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(color: AppColors.kGray),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.kBlack.withOpacity(0.1),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              )
+            ],
           ),
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.network(subjectIcon),
+                padding: const EdgeInsets.all(16.0),
+                child: SizedBox(
+                  height: 71.h,
+                  width: 60.w,
+                  child: Image.network(
+                    subjectIcon,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -63,13 +80,6 @@ class GetAllExamsContainer extends StatelessWidget {
                         ],
                       ),
                       Text("${exams.numberOfQuestions} Question",
-                          style: AppFonts.font13BlackWeight400.copyWith(
-                            decoration: TextDecoration.none,
-                          )),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      Text("From 1.00  To 6.00",
                           style: AppFonts.font13BlackWeight400.copyWith(
                             decoration: TextDecoration.none,
                           )),
