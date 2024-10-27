@@ -8,13 +8,19 @@ import '../../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../data/mdoel/response/gel_all_exams_model/Exams.dart';
 
 class GetAllExamsContainer extends StatelessWidget {
- final Exams exams;
+  final Exams exams;
   GetAllExamsContainer({required this.exams});
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>QuestionsScreen(examId: exams.id.toString())));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => QuestionsScreen(
+                      examId: exams.id.toString(), examName: exams.title.toString(), duration: exams.duration.toString(),
+
+                    )));
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -45,14 +51,11 @@ class GetAllExamsContainer extends StatelessWidget {
                                 color: AppColors.kBlack,
                                 decoration: TextDecoration.none),
                           ),
-                          Text(
-                            "${exams.duration} Minutes",
-                            style: AppFonts.font13BlackWeight400.copyWith(
-                              color: AppColors.kBlue,
-                              decoration: TextDecoration.none,
-
-                            )
-                          ),
+                          Text("${exams.duration} Minutes",
+                              style: AppFonts.font13BlackWeight400.copyWith(
+                                color: AppColors.kBlue,
+                                decoration: TextDecoration.none,
+                              )),
                         ],
                       ),
                       Text("${exams.numberOfQuestions} Question",
@@ -62,11 +65,10 @@ class GetAllExamsContainer extends StatelessWidget {
                       SizedBox(
                         height: 15.h,
                       ),
-                      Text(
-                        "From 1.00  To 6.00",
-                        style: AppFonts.font13BlackWeight400.copyWith(
-                          decoration: TextDecoration.none,
-                      )),
+                      Text("From 1.00  To 6.00",
+                          style: AppFonts.font13BlackWeight400.copyWith(
+                            decoration: TextDecoration.none,
+                          )),
                     ],
                   ),
                 ),

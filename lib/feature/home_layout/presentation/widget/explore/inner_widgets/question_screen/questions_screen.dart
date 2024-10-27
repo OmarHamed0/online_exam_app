@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/config/routes/page_route_name.dart';
 import 'package:online_exam/core/utils/functions/dialogs/app_dialogs.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Exam.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_cubite.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_state.dart';
 import 'dart:async';
@@ -15,7 +16,10 @@ import '../../../../../data/mdoel/response/get_all_qeastions_model/Questions.dar
 class QuestionsScreen extends StatefulWidget {
   static String routeName = "questionsScreen";
   final String examId;
-  QuestionsScreen({required this.examId});
+  final String examName;
+  final String duration;
+
+  QuestionsScreen({required this.examId,required this.examName,required this.duration});
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -24,11 +28,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   int selectedOption = -1;
   List<Questions> questionList = [];
   int currentQuestionIndex = 0;
-  int remainingTime = 60;
+  late int remainingTime;
   Timer? timer;
   @override
   void initState() {
     super.initState();
+    remainingTime = int.parse(widget.duration) * 60;
     startTimer();
     viewModel.getAllQuestions(widget.examId);
   }
@@ -82,7 +87,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           int totalQuestions = questionList.length;
           return Scaffold(
               appBar: AppBar(
-                title: Text("Exam"),
+                title: Text(widget.examName),
                 leading: Icon(Icons.arrow_back_ios_rounded),
                 actions: [
                   Padding(
@@ -92,7 +97,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         Image.asset(AppImages.alarm),
                         SizedBox(width: 5),
                         Text(
-                          "00:${remainingTime.toString().padLeft(2, '0')}",
+                          "${(remainingTime ~/ 60).toString().padLeft(2,'0')}:${(remainingTime % 60).toString().padLeft(2, '0')}",
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w400,
