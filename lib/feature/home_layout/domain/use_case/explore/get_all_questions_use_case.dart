@@ -7,7 +7,7 @@ import '../../../../../core/api/api_result.dart';
 class GetAllQuestionsUseCase {
   ExploreRepository repository;
   GetAllQuestionsUseCase({required this.repository});
-  Future<Result<GetAllQuestionsModel?>> invoke() {
-    return repository.getAllQuestions();
+  Future<Result<GetAllQuestionsModel?>> invoke(String examId) {
+    return repository.getAllQuestions(examId);
   }
 }

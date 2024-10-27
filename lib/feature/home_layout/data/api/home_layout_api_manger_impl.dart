@@ -53,9 +53,12 @@ class HomeLayoutApiMangerImpl implements HomeLayoutApiManger {
   }
 
   @override
-  Future<GetAllQuestionsModel?> getAllQuestions() async {
+  Future<GetAllQuestionsModel?> getAllQuestions(String examId) async {
     var token = await TokenManger.getToken();
     var response = await _dio.get(ApiConstants.getAllQuestionsApi,
+        queryParameters: {
+          "exam": examId,
+        },
         options: Options(headers: {"token": token}));
     GetAllQuestionsModel getAllQuestions =
         GetAllQuestionsModel.fromJson(response.data);

@@ -25,8 +25,6 @@ class AppRoutes {
         return _handleMaterialPageRoute(widget:  MainHomeScreen());
         case PageRouteName.startExamScreen:
         return _handleMaterialPageRoute(widget:  StartExamScreen());
-      case PageRouteName.questionsScreen:
-        return _handleMaterialPageRoute(widget: QuestionsScreen());
       case PageRouteName.examScoreScreen:
         return _handleMaterialPageRoute(widget: ExamScoreScreen());
         case PageRouteName.resultAnswerScreen:

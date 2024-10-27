@@ -13,8 +13,7 @@ class GetAllExamsScreen extends StatelessWidget {
   static String routeName = "specificSubjectScreen";
   final String subjectId;
   final String subjectName;
-  GetAllExamsScreen({required this.subjectId,required this.subjectName});
-
+  GetAllExamsScreen({required this.subjectId, required this.subjectName});
 
   var viewModel = getIt.get<GetAllExamsCubit>();
   @override
@@ -23,23 +22,26 @@ class GetAllExamsScreen extends StatelessWidget {
       create: (context) => viewModel..getAllExams(subjectId),
       child: BlocBuilder<GetAllExamsCubit, GetAllExamsStates>(
           builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(subjectName,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: AppColors.kBlack,
-                        fontWeight: FontWeight.w600)),
-                leading: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, PageRouteName.mainHome);
-                    },
-                    child: Icon(Icons.arrow_back_ios_rounded)),
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(subjectName,
+                style: TextStyle(
+                    fontSize: 20,
+                    color: AppColors.kBlack,
+                    fontWeight: FontWeight.w600)),
+            leading: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, PageRouteName.mainHome);
+                },
+                child: Icon(Icons.arrow_back_ios_rounded)),
+          ),
+          body: Column(
+            children: [
+              SizedBox(
+                height: 30.h,
               ),
-              body: Column(
-                children: [
-                  SizedBox(height: 30.h,),
-                  state is GetAllExamsSuccessStat
+              state is GetAllExamsSuccessStat
+                  ? viewModel.examsList.isNotEmpty
                       ? Expanded(
                           child: GridView.builder(
                               itemCount: viewModel.examsList.length,
@@ -55,14 +57,36 @@ class GetAllExamsScreen extends StatelessWidget {
                                 );
                               }))
                       : Center(
-                        child: CircularProgressIndicator(
+                          child: Text(
+                            "No exams available For This Subject.",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: AppColors.kGray,
+                            ),
+                          ),
+                        )
+                  : state is GetAllExamsLoadingStat
+                      ? Center(
+                          child: CircularProgressIndicator(
                             color: AppColors.kBlue,
                           ),
-                      ),
-                ],
-              ),
-            );
-          }),
+                        )
+                      : state is GetAllExamsErrorStat
+                          ? Center(
+                              child: Text(
+                                state.errorMessage?.toString() ??
+                                    "An error occurred.",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.kRed,
+                                ),
+                              ),
+                            )
+                          : SizedBox.shrink(),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

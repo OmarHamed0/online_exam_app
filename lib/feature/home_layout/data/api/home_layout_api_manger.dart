@@ -9,5 +9,5 @@ import '../mdoel/response/subject_model/Subject_model.dart';
 abstract class HomeLayoutApiManger {
   Future<SubjectModel?> getAllSubjects();
   Future<GetAllExamsModel?> getAllExams(String subjectId);
-  Future<GetAllQuestionsModel?> getAllQuestions();
+  Future<GetAllQuestionsModel?> getAllQuestions(String examId);
 }

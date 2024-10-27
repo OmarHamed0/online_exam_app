@@ -11,8 +11,11 @@ import '../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../../dependency_injection/di.dart';
 import '../../../../../data/mdoel/response/get_all_qeastions_model/Questions.dart';
+
 class QuestionsScreen extends StatefulWidget {
   static String routeName = "questionsScreen";
+  final String examId;
+  QuestionsScreen({required this.examId});
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -27,7 +30,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   void initState() {
     super.initState();
     startTimer();
-    viewModel.getAllQuestions();
+    viewModel.getAllQuestions(widget.examId);
   }
 
   @override
@@ -58,16 +61,22 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       builder: (context, state) {
         if (state is GetAllQuestionsLoadingState) {
           return Center(
-            child: CircularProgressIndicator(
-              color: AppColors.kBlue,
-            ),
-          );
+              child: CircularProgressIndicator(
+            color: AppColors.kBlue,
+          ));
         } else if (state is GetAllQuestionsSuccessState) {
           questionList = state.getAllQuestions?.questions ?? [];
-
           if (questionList.isEmpty) {
-            Center(
-              child: Text("No questions available."),
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: AppColors.kWhite,
+              child: Center(
+                child: Text(
+                  "No Questions Available.",
+                  style: AppFonts.font20BlackWeight500,
+                ),
+              ),
             );
           }
           int totalQuestions = questionList.length;
@@ -82,14 +91,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       children: [
                         Image.asset(AppImages.alarm),
                         SizedBox(width: 5),
-                        Text("00:${remainingTime.toString().padLeft(2, '0')}",
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w400,
-                              color: remainingTime < 10
-                                  ? AppColors.kRed
-                                  : AppColors.kGreen,
-                            )),
+                        Text(
+                          "00:${remainingTime.toString().padLeft(2, '0')}",
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400,
+                            color: remainingTime < 10
+                                ? AppColors.kRed
+                                : AppColors.kGreen,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -129,13 +140,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount:
-                    questionList[currentQuestionIndex].answers?.length ?? 0,
+                        questionList[currentQuestionIndex].answers?.length ?? 0,
                     itemBuilder: (context, index) {
                       return option(
                           index,
                           questionList[currentQuestionIndex]
-                              .answers![index]
-                              .answer ??
+                                  .answers![index]
+                                  .answer ??
                               "");
                     },
                   ),
@@ -156,11 +167,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           ),
                           onPressed: currentQuestionIndex > 0
                               ? () {
-                            setState(() {
-                              currentQuestionIndex--;
-                              selectedOption = -1;
-                            });
-                          }
+                                  setState(() {
+                                    currentQuestionIndex--;
+                                    selectedOption = -1;
+                                  });
+                                }
                               : null,
                           child: Text(
                             "Back",
@@ -182,11 +193,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           ),
                           onPressed: currentQuestionIndex < totalQuestions - 1
                               ? () {
-                            setState(() {
-                              currentQuestionIndex++;
-                              selectedOption = -1;
-                            });
-                          }
+                                  setState(() {
+                                    currentQuestionIndex++;
+                                    selectedOption = -1;
+                                  });
+                                }
                               : null,
                           child: Text(
                             "Next",
@@ -199,7 +210,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 )
               ]));
         } else if (state is GetAllQuestionsErrorState) {
-          Center(
+          return Center(
             child: Text("Error loading questions: ${state.exception}"),
           );
         }

@@ -16,6 +16,7 @@ class GetAllExamsCubit extends Cubit<GetAllExamsStates> {
     var result = await useCase.invoke(subjectId);
     if (result is Success<GetAllExamsModel?>) {
       examsList = result.data?.exams ?? [];
+
       emit(GetAllExamsSuccessStat(getAllExamsModel: result.data));
     }
     if (result is Fail<GetAllExamsModel?>) {

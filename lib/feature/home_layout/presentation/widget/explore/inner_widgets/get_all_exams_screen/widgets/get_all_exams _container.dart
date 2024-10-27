@@ -2,20 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
-
-import '../../../../../../../../config/routes/page_route_name.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/question_screen/questions_screen.dart';
 import '../../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../data/mdoel/response/gel_all_exams_model/Exams.dart';
 
 class GetAllExamsContainer extends StatelessWidget {
-  Exams exams;
+ final Exams exams;
   GetAllExamsContainer({required this.exams});
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, PageRouteName.startExamScreen, arguments: exams.id);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>QuestionsScreen(examId: exams.id.toString())));
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),

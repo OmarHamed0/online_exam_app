@@ -29,8 +29,8 @@ class ExploreRepositoryImpl implements ExploreRepository {
   }
 
   @override
-  Future<Result<GetAllQuestionsModel?>> getAllQuestions() {
-    return exploreRemoteDataSource.getAllQuestions();
+  Future<Result<GetAllQuestionsModel?>> getAllQuestions(String examId) {
+    return exploreRemoteDataSource.getAllQuestions(examId);
   }
 
 

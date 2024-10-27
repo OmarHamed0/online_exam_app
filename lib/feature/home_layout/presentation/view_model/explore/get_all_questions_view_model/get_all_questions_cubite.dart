@@ -11,9 +11,9 @@ class GetAllQuestionsCubit extends Cubit<GetAllQuestionsStates>{
   GetAllQuestionsCubit({required this.useCase}):super(GetAllQuestionsInitialState());
   List<Questions> questionsList = [];
 
-  void getAllQuestions()async{
+  void getAllQuestions(String examId)async{
     emit(GetAllQuestionsLoadingState(loadingMessage: "Loading....."));
-    var result=await useCase.invoke();
+    var result=await useCase.invoke(examId);
     if(result is Success<GetAllQuestionsModel?>){
       questionsList=result.data?.questions??[];
       emit(GetAllQuestionsSuccessState(getAllQuestions: result.data));
