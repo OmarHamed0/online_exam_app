@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/config/routes/page_route_name.dart';
 import 'package:online_exam/core/utils/functions/dialogs/app_dialogs.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_cubite.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_state.dart';
@@ -10,7 +11,6 @@ import '../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../../dependency_injection/di.dart';
 import '../../../../../data/mdoel/response/get_all_qeastions_model/Questions.dart';
-
 class QuestionsScreen extends StatefulWidget {
   static String routeName = "questionsScreen";
   @override
@@ -129,13 +129,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount:
-                        questionList[currentQuestionIndex].answers?.length ?? 0,
+                    questionList[currentQuestionIndex].answers?.length ?? 0,
                     itemBuilder: (context, index) {
                       return option(
                           index,
                           questionList[currentQuestionIndex]
-                                  .answers![index]
-                                  .answer ??
+                              .answers![index]
+                              .answer ??
                               "");
                     },
                   ),
@@ -156,11 +156,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           ),
                           onPressed: currentQuestionIndex > 0
                               ? () {
-                                  setState(() {
-                                    currentQuestionIndex--;
-                                    selectedOption = -1;
-                                  });
-                                }
+                            setState(() {
+                              currentQuestionIndex--;
+                              selectedOption = -1;
+                            });
+                          }
                               : null,
                           child: Text(
                             "Back",
@@ -182,11 +182,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           ),
                           onPressed: currentQuestionIndex < totalQuestions - 1
                               ? () {
-                                  setState(() {
-                                    currentQuestionIndex++;
-                                    selectedOption = -1;
-                                  });
-                                }
+                            setState(() {
+                              currentQuestionIndex++;
+                              selectedOption = -1;
+                            });
+                          }
                               : null,
                           child: Text(
                             "Next",

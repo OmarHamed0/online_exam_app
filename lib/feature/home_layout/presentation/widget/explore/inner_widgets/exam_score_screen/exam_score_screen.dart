@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/config/routes/page_route_name.dart';
-import 'package:online_exam/core/styles/colors/app_colors.dart';
 import 'package:online_exam/core/styles/fonts/app_fonts.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/exam_score_screen/widgets/exam_score_container.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import '../../../../../../../config/routes/page_route_name.dart';
+import '../../../../../../../core/styles/colors/app_colors.dart';
 
 class ExamScoreScreen extends StatelessWidget {
   static String routeName = "ExamScoreScreen";
@@ -30,7 +32,7 @@ class ExamScoreScreen extends StatelessWidget {
                 Text(
                   "Your Score",
                   style:
-                      AppFonts.font20BlackWeight500.copyWith(fontSize: 18.sp),
+                  AppFonts.font20BlackWeight500.copyWith(fontSize: 18.sp),
                 ),
               ],
             ),

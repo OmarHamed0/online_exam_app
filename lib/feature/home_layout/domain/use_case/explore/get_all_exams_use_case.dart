@@ -6,7 +6,7 @@ import 'package:online_exam/feature/home_layout/domain/repository/explore_reposi
 class GetAllExamsUseCase {
   ExploreRepository repository;
   GetAllExamsUseCase({required this.repository});
-  Future<Result<GetAllExamsModel?>> invoke() {
-    return repository.getAllExams();
+  Future<Result<GetAllExamsModel?>> invoke(String subjectId) {
+    return repository.getAllExams(subjectId);
   }
 }

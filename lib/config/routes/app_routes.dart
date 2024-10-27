@@ -6,7 +6,6 @@ import 'package:online_exam/feature/home_layout/presentation/widget/explore/inne
 import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/start_exam_widget/start_exam_screen.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/result/widgets/result_answer_widget/result_answer.dart';
 import 'package:online_exam/feature/splash/splash_view.dart';
-
 import '../../feature/auth/presentation/login/view/login_view.dart';
 import '../../feature/home_layout/presentation/widget/explore/inner_widgets/get_all_exams_screen/get_all_exams_screen.dart';
 import '../../feature/home_layout/presentation/widget/explore/inner_widgets/question_screen/questions_screen.dart';
@@ -16,8 +15,6 @@ class AppRoutes {
     switch (settings.name) {
       case PageRouteName.splash:
         return _handleMaterialPageRoute(widget: const SplashView());
-      case PageRouteName.getAllExamsScreen:
-        return _handleMaterialPageRoute(widget:  GetAllExamsScreen());
       case PageRouteName.login:
         return _handleMaterialPageRoute(widget: const LoginView());
       case PageRouteName.register:

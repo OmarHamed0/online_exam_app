@@ -15,7 +15,7 @@ class GetAllExamsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, PageRouteName.startExamScreen);
+        Navigator.pushNamed(context, PageRouteName.startExamScreen, arguments: exams.id);
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
