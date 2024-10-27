@@ -61,7 +61,7 @@ class ExploreScreen extends StatelessWidget {
                       ),
                       itemBuilder: (context, index) {
                         return ExploreContainer(
-                            subjects: viewModel.subjectList[index]);
+                            subject: viewModel.subjectList[index]);
                       }),
                 )
                     : const Center(

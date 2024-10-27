@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
-import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/question_screen/questions_screen.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/start_exam_widget/start_exam_screen.dart';
 import '../../../../../../../../core/styles/fonts/app_fonts.dart';
-import '../../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../data/mdoel/response/gel_all_exams_model/Exams.dart';
 
 class GetAllExamsContainer extends StatelessWidget {
   final Exams exams;
-  GetAllExamsContainer({required this.exams});
+  final String subjectIcon;
+  GetAllExamsContainer({required this.exams, required this.subjectIcon,});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,9 +17,13 @@ class GetAllExamsContainer extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => QuestionsScreen(
-                      examId: exams.id.toString(), examName: exams.title.toString(), duration: exams.duration.toString(),
-
+                builder: (context) => StartExamScreen(
+                      examId: exams.id.toString(),
+                      examName: exams.title.toString(),
+                      duration: exams.duration.toString(),
+                      minutes: exams.duration.toString(),
+                      noOfQuestions: exams.numberOfQuestions.toString(),
+                  subjectIcon: subjectIcon.toString(),
                     )));
       },
       child: Padding(
@@ -34,7 +38,7 @@ class GetAllExamsContainer extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset(AppImages.profit),
+                child: Image.network(subjectIcon),
               ),
               Expanded(
                 child: Padding(

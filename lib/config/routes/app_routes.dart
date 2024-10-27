@@ -23,8 +23,6 @@ class AppRoutes {
         return _handleMaterialPageRoute(widget: const ForgetPasswordView());
       case PageRouteName.mainHome:
         return _handleMaterialPageRoute(widget:  MainHomeScreen());
-        case PageRouteName.startExamScreen:
-        return _handleMaterialPageRoute(widget:  StartExamScreen());
       case PageRouteName.examScoreScreen:
         return _handleMaterialPageRoute(widget: ExamScoreScreen());
         case PageRouteName.resultAnswerScreen:

@@ -1,14 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/get_exam_by_id_model/Exam.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/get_exam_by_id_model/GetExamByIdModel.dart';
-import '../../../../../../../../config/routes/page_route_name.dart';
 import '../../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../../core/styles/fonts/app_fonts.dart';
-import '../../../../../../../../core/styles/images/app_images.dart';
+import '../../question_screen/questions_screen.dart';
 
 class StartExamContainer extends StatelessWidget {
+  final String examId;
+  final String examName;
+  final String duration;
+  final String minutes;
+  final String noOfQuestions;
+  final String subjectIcon;
+
+  StartExamContainer({
+    required this.examId,
+    required this.examName,
+    required this.duration,
+    required this.minutes,
+    required this.subjectIcon,
+    required this.noOfQuestions,
+  });
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,20 +34,24 @@ class StartExamContainer extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(AppImages.profit),
+                    child: SizedBox(
+                      width: 52.0.w,
+                      height: 47.0.h,
+                      child: Image.network(
+                        subjectIcon,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("subject",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: AppColors.kBlack,
-                            fontWeight: FontWeight.w600)),
-                  ),
+                  Text(examName,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: AppColors.kBlack,
+                          fontWeight: FontWeight.w600)),
                 ],
               ),
               Text(
-                "30 Minutes",
+                "${minutes} Minutes",
                 style: AppFonts.font13BlackWeight400.copyWith(
                     color: AppColors.kBlue, decoration: TextDecoration.none),
               ),
@@ -43,13 +59,16 @@ class StartExamContainer extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 20.w),
+          padding: EdgeInsets.only(left: 15.w),
           child: Row(
             children: [
               Text(
-               "tittle",
+                examName,
                 style: AppFonts.font18BlackWeight600
                     .copyWith(fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                width: 5.w,
               ),
               Text(
                 "|",
@@ -59,7 +78,7 @@ class StartExamContainer extends StatelessWidget {
                 width: 5.w,
               ),
               Text(
-                "30 Questions",
+                "${noOfQuestions} Questions",
                 style: AppFonts.font16GrayWeight400,
               ),
             ],
@@ -159,7 +178,14 @@ class StartExamContainer extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, PageRouteName.questionsScreen);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => QuestionsScreen(
+                          examId: examId.toString(),
+                          examName: examName.toString(),
+                          duration: duration.toString(),
+                        )));
           },
           child: Text(
             "Start",

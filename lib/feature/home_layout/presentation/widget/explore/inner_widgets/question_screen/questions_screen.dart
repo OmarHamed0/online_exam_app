@@ -19,7 +19,8 @@ class QuestionsScreen extends StatefulWidget {
   final String examName;
   final String duration;
 
-  QuestionsScreen({required this.examId,required this.examName,required this.duration});
+  QuestionsScreen(
+      {required this.examId, required this.examName, required this.duration});
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -97,7 +98,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         Image.asset(AppImages.alarm),
                         SizedBox(width: 5),
                         Text(
-                          "${(remainingTime ~/ 60).toString().padLeft(2,'0')}:${(remainingTime % 60).toString().padLeft(2, '0')}",
+                          "${(remainingTime ~/ 60).toString().padLeft(2, '0')}:${(remainingTime % 60).toString().padLeft(2, '0')}",
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w400,

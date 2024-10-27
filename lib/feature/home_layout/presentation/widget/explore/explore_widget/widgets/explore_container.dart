@@ -7,8 +7,9 @@ import '../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../data/mdoel/response/subject_model/subjects.dart';
 
 class ExploreContainer extends StatelessWidget {
-  Subjects subjects;
-  ExploreContainer({required this.subjects});
+ final Subjects subject;
+
+  ExploreContainer({required this.subject});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,8 +18,9 @@ class ExploreContainer extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => GetAllExamsScreen(
-                      subjectId: subjects.id.toString(),
-                      subjectName: subjects.name.toString(),
+                      subjectId: subject.id.toString(),
+                      subjectName: subject.name.toString(),
+                  subjectIcon: subject.icon.toString(),
                     )));
       },
       child: Padding(
@@ -40,12 +42,12 @@ class ExploreContainer extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                Image.network(subjects.icon ?? ""),
+                Image.network(subject.icon ?? ""),
                 SizedBox(
                   width: 10.w,
                 ),
                 Text(
-                  subjects.name ?? "",
+                  subject.name ?? "",
                   style: AppFonts.font16GrayWeight400
                       .copyWith(color: AppColors.kBlack),
                 ),
