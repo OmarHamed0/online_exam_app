@@ -28,6 +28,7 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   int selectedOption = -1;
   List<Questions> questionList = [];
+  List<int?> selectedOptions = [];
   int currentQuestionIndex = 0;
   late int remainingTime;
   Timer? timer;
@@ -85,6 +86,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               ),
             );
           }
+          if (selectedOptions.length != questionList.length) {
+            selectedOptions = List.filled(questionList.length, null);
+          }
+
           int totalQuestions = questionList.length;
           return Scaffold(
               appBar: AppBar(
@@ -149,11 +154,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         questionList[currentQuestionIndex].answers?.length ?? 0,
                     itemBuilder: (context, index) {
                       return option(
-                          index,
-                          questionList[currentQuestionIndex]
-                                  .answers![index]
-                                  .answer ??
-                              "");
+                        index,
+                        questionList[currentQuestionIndex]
+                                .answers![index]
+                                .answer ??
+                            "",
+                        currentQuestionIndex, // Pass the current question index
+                      );
                     },
                   ),
                 ),
@@ -227,19 +234,19 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     );
   }
 
-  Widget option(int value, String text) {
+  Widget option(int value, String text, int questionIndex) {
     return Padding(
       padding: EdgeInsets.all(8),
       child: InkWell(
         onTap: () {
           setState(() {
-            selectedOption = value;
+            selectedOptions[questionIndex] = value;
           });
         },
         child: Container(
           padding: EdgeInsets.all(7),
           decoration: BoxDecoration(
-            color: selectedOption == value
+            color: selectedOptions[questionIndex] == value
                 ? AppColors.kMedBlue
                 : AppColors.kLightBlue,
             borderRadius: BorderRadius.circular(15.r),
@@ -248,11 +255,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             children: [
               Radio<int>(
                 value: value,
-                groupValue: selectedOption,
+                groupValue: selectedOptions[questionIndex],
                 activeColor: AppColors.kBlue,
                 onChanged: (int? newValue) {
                   setState(() {
-                    selectedOption = newValue!;
+                    selectedOptions[questionIndex] = newValue;
                   });
                 },
               ),

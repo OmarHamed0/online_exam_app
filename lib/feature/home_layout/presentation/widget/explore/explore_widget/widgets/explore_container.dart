@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/get_all_exams_screen/get_all_exams_screen.dart';
-import '../../../../../../../config/routes/page_route_name.dart';
 import '../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../data/mdoel/response/subject_model/subjects.dart';
 
 class ExploreContainer extends StatelessWidget {
- final Subjects subject;
+  final Subjects subject;
 
   ExploreContainer({required this.subject});
   @override
@@ -20,7 +19,7 @@ class ExploreContainer extends StatelessWidget {
                 builder: (context) => GetAllExamsScreen(
                       subjectId: subject.id.toString(),
                       subjectName: subject.name.toString(),
-                  subjectIcon: subject.icon.toString(),
+                      subjectIcon: subject.icon.toString(),
                     )));
       },
       child: Padding(
