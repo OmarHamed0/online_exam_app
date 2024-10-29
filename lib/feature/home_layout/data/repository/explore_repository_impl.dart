@@ -33,5 +33,10 @@ class ExploreRepositoryImpl implements ExploreRepository {
     return exploreRemoteDataSource.getAllQuestions(examId);
   }
 
+  @override
+  Future<Result<CheckQuestionsModel?>> checkQuestions(CheckQuestionsRequest request) {
+return exploreRemoteDataSource.checkQuestions(request);
+  }
+
 
 }

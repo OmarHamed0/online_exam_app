@@ -7,6 +7,7 @@ import 'package:online_exam/config/routes/page_route_name.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
 import 'package:online_exam/core/styles/fonts/app_fonts.dart';
 import 'package:online_exam/core/styles/images/app_images.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/question_screen/questions_screen.dart';
 
 class AppDialogs {
   static Future<void> showLoading({
@@ -49,7 +50,8 @@ class AppDialogs {
     );
   }
 
-  static void showTimedOut({
+ /******************** static void
+  showTimedOut({
     required BuildContext context,
   }) {
     showDialog(
@@ -87,8 +89,7 @@ class AppDialogs {
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.pushReplacementNamed(context, PageRouteName.examScoreScreen,);
-                },
+                  submitAnswers();                },
                 child: Text(
                   "View Score",
                   style: TextStyle(color: AppColors.kWhite,fontWeight: FontWeight.w500),
@@ -99,5 +100,5 @@ class AppDialogs {
         ),
       ),
     );
-  }
+  } **************/
 }

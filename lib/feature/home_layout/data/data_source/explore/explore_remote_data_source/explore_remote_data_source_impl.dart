@@ -1,10 +1,11 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/check_questions_model/CheckQuestionsModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exams_model/GetAllExamsModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart';
-
 import '../../../../../../core/api/api_result.dart';
 import '../../../../../../core/api/execute_api_call.dart';
 import '../../../api/home_layout_api_manger.dart';
+import '../../../mdoel/request/CheckQuestionsRequesrt.dart';
 import '../../../mdoel/response/subject_model/Subject_model.dart';
 import 'explore_remote_data_source.dart';
 
@@ -36,4 +37,12 @@ class ExploreRemoteDataSourceImpl implements ExploreRemoteDataSource {
     });
   }
 
+  @override
+  Future<Result<CheckQuestionsModel?>> checkQuestions(
+      CheckQuestionsRequest request) {
+    return executeApiCall<CheckQuestionsModel?>(apiCall: () async {
+      var response = await apiManger.checkQuestions(request);
+      return response;
+    });
+  }
 }

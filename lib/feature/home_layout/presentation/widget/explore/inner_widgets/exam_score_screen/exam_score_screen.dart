@@ -8,6 +8,16 @@ import '../../../../../../../core/styles/colors/app_colors.dart';
 
 class ExamScoreScreen extends StatelessWidget {
   static String routeName = "ExamScoreScreen";
+  final int correctAnswers;
+  final int wrongAnswers;
+  final double scorePercentage;
+
+  ExamScoreScreen({
+    required this.correctAnswers,
+    required this.wrongAnswers,
+    required this.scorePercentage,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +26,10 @@ class ExamScoreScreen extends StatelessWidget {
           "Exam Score",
           style: AppFonts.font20BlackWeight500,
         ),
-        leading: Icon(Icons.arrow_back_ios_rounded),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Column(
         children: [
@@ -30,7 +43,7 @@ class ExamScoreScreen extends StatelessWidget {
                 Text(
                   "Your Score",
                   style:
-                  AppFonts.font20BlackWeight500.copyWith(fontSize: 18.sp),
+                      AppFonts.font20BlackWeight500.copyWith(fontSize: 18.sp),
                 ),
               ],
             ),
@@ -43,11 +56,11 @@ class ExamScoreScreen extends StatelessWidget {
                   radius: 70.00,
                   animation: true,
                   lineWidth: 7.0,
-                  percent: 0.80,
+                  percent: scorePercentage / 100,
                   progressColor: AppColors.kBlue,
                   backgroundColor: AppColors.kRed,
                   center: Text(
-                    "80%",
+                    "${(scorePercentage * 100).toInt()}%",
                     style: AppFonts.font20BlackWeight500,
                   ),
                 ),
@@ -63,7 +76,7 @@ class ExamScoreScreen extends StatelessWidget {
                                 style: AppFonts.font16BlueWeight500
                                     .copyWith(decoration: TextDecoration.none)),
                             Text(
-                              "18",
+                              "${correctAnswers} ",
                               style: AppFonts.font16BlueWeight500.copyWith(
                                 decoration: TextDecoration.none,
                               ),
@@ -76,11 +89,11 @@ class ExamScoreScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Correct",
+                            Text("Wrong",
                                 style: AppFonts.font16BlueWeight500.copyWith(
                                     decoration: TextDecoration.none,
                                     color: AppColors.kRed)),
-                            Text("2",
+                            Text("${wrongAnswers} ",
                                 style: AppFonts.font16BlueWeight500.copyWith(
                                     decoration: TextDecoration.none,
                                     color: AppColors.kRed))

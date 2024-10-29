@@ -1,9 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/config/routes/page_route_name.dart';
-import 'package:online_exam/core/utils/functions/dialogs/app_dialogs.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Exam.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_cubite.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_state.dart';
 import 'dart:async';
@@ -12,6 +10,7 @@ import '../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../../dependency_injection/di.dart';
 import '../../../../../data/mdoel/response/get_all_qeastions_model/Questions.dart';
+import '../exam_score_screen/exam_score_screen.dart';
 
 class QuestionsScreen extends StatefulWidget {
   static String routeName = "questionsScreen";
@@ -19,8 +18,12 @@ class QuestionsScreen extends StatefulWidget {
   final String examName;
   final String duration;
 
+
   QuestionsScreen(
-      {required this.examId, required this.examName, required this.duration});
+      {required this.examId,
+      required this.examName,
+      required this.duration,
+   });
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -53,7 +56,68 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           remainingTime--;
         } else {
           timer.cancel();
-          AppDialogs.showTimedOut(context: context);
+          var results = submitAnswers();
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              backgroundColor: AppColors.kWhite,
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(AppImages.sandClock),
+                        SizedBox(width: 5.w),
+                        Text(
+                          'Time out !!',
+                          style: TextStyle(
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.kError),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 12.h, horizontal: 50.w),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.r)),
+                        backgroundColor: AppColors.kBlue,
+                        side: BorderSide(color: AppColors.kBlue),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ExamScoreScreen(
+                              correctAnswers: results['correctAnswers'],
+                              wrongAnswers: results['wrongAnswers'],
+                              scorePercentage: results['scorePercentage'],
+                            ),
+                          ),
+                        );
+
+                        submitAnswers();
+                      },
+                      child: Text(
+                        "View Score",
+                        style: TextStyle(
+                            color: AppColors.kWhite,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
         }
       });
     });
@@ -134,7 +198,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
+                        child: AutoSizeText(
                           questionList[currentQuestionIndex].question ?? "",
                           textAlign: TextAlign.start,
                           style: TextStyle(
@@ -204,16 +268,31 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             backgroundColor: AppColors.kBlue,
                             side: BorderSide(color: AppColors.kBlue),
                           ),
-                          onPressed: currentQuestionIndex < totalQuestions - 1
-                              ? () {
-                                  setState(() {
-                                    currentQuestionIndex++;
-                                    selectedOption = -1;
-                                  });
-                                }
-                              : null,
+                          onPressed: () {
+                            if (currentQuestionIndex < totalQuestions - 1) {
+                              setState(() {
+                                currentQuestionIndex++;
+                                selectedOption = -1;
+                              });
+                            } else {
+                              var results = submitAnswers();
+                              timer?.cancel();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExamScoreScreen(
+                                      correctAnswers: results['correctAnswers'],
+                                      wrongAnswers: results['wrongAnswers'],
+                                      scorePercentage:
+                                          results['scorePercentage'],
+                                    ),
+                                  ));
+                            }
+                          },
                           child: Text(
-                            "Next",
+                            currentQuestionIndex < totalQuestions - 1
+                                ? "Next"
+                                : "Finish Exam",
                             style: TextStyle(color: AppColors.kWhite),
                           ),
                         ),
@@ -271,5 +350,24 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         ),
       ),
     );
+  }
+
+  Map<String, dynamic> submitAnswers() {
+    int correctAnswers = 0;
+    int wrongAnswers = 0;
+    for (int i = 0; i < questionList.length; i++) {
+      if (selectedOptions[i] != null && selectedOptions[i] == questionList[i].correct) {
+        correctAnswers++;
+      } else {
+        wrongAnswers++;
+      }
+    }
+    int totalQuestions = questionList.length;
+    double scorePercentage = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
+    return {
+      'correctAnswers': correctAnswers,
+      'wrongAnswers': wrongAnswers,
+      'scorePercentage': scorePercentage,
+    };
   }
 }
