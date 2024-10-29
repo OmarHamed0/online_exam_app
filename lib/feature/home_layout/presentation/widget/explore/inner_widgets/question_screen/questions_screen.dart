@@ -9,6 +9,7 @@ import '../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../../core/styles/images/app_images.dart';
 import '../../../../../../../dependency_injection/di.dart';
+import '../../../../../data/mdoel/request/CheckQuestionsRequesrt.dart';
 import '../../../../../data/mdoel/response/get_all_qeastions_model/Questions.dart';
 import '../exam_score_screen/exam_score_screen.dart';
 
@@ -29,12 +30,14 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  List<CheckQuestionAnswer>cheekQuestionAnswer=[];
   int selectedOption = -1;
   List<Questions> questionList = [];
   List<int?> selectedOptions = [];
   int currentQuestionIndex = 0;
   late int remainingTime;
   Timer? timer;
+
   @override
   void initState() {
     super.initState();
@@ -49,6 +52,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     super.dispose();
   }
 
+
   void startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -56,67 +60,67 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           remainingTime--;
         } else {
           timer.cancel();
-          var results = submitAnswers();
           showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              backgroundColor: AppColors.kWhite,
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(AppImages.sandClock),
-                        SizedBox(width: 5.w),
-                        Text(
-                          'Time out !!',
-                          style: TextStyle(
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.kError),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 12.h, horizontal: 50.w),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.r)),
-                        backgroundColor: AppColors.kBlue,
-                        side: BorderSide(color: AppColors.kBlue),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ExamScoreScreen(
-                              correctAnswers: results['correctAnswers'],
-                              wrongAnswers: results['wrongAnswers'],
-                              scorePercentage: results['scorePercentage'],
+            builder: (context) =>
+                AlertDialog(
+                  backgroundColor: AppColors.kWhite,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(AppImages.sandClock),
+                            SizedBox(width: 5.w),
+                            Text(
+                              'Time out !!',
+                              style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.kError),
                             ),
-                          ),
-                        );
-
-                        submitAnswers();
-                      },
-                      child: Text(
-                        "View Score",
-                        style: TextStyle(
-                            color: AppColors.kWhite,
-                            fontWeight: FontWeight.w500),
+                          ],
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12.h, horizontal: 50.w),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25.r)),
+                            backgroundColor: AppColors.kBlue,
+                            side: BorderSide(color: AppColors.kBlue),
+                          ),
+                          onPressed: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         ExamScoreScreen(
+                            //           correctAnswers: results['correctAnswers'],
+                            //           wrongAnswers: results['wrongAnswers'],
+                            //           scorePercentage: results['scorePercentage'],
+                            //         ),
+                            //   ),
+                            // );
+
+                          },
+                          child: Text(
+                            "View Score",
+                            style: TextStyle(
+                                color: AppColors.kWhite,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
           );
         }
       });
@@ -131,10 +135,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       bloc: viewModel,
       builder: (context, state) {
         if (state is GetAllQuestionsLoadingState) {
-          return Center(
+          return const Center(
               child: CircularProgressIndicator(
-            color: AppColors.kBlue,
-          ));
+                color: AppColors.kBlue,
+              ));
         } else if (state is GetAllQuestionsSuccessState) {
           questionList = state.getAllQuestions?.questions ?? [];
           if (questionList.isEmpty) {
@@ -151,23 +155,27 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             );
           }
           if (selectedOptions.length != questionList.length) {
-            selectedOptions = List.filled(questionList.length, null);
+            selectedOptions =
+                List.filled(questionList.length, null);
           }
 
           int totalQuestions = questionList.length;
           return Scaffold(
               appBar: AppBar(
                 title: Text(widget.examName),
-                leading: Icon(Icons.arrow_back_ios_rounded),
+                leading: const Icon(Icons.arrow_back_ios_rounded),
                 actions: [
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
                       children: [
                         Image.asset(AppImages.alarm),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
-                          "${(remainingTime ~/ 60).toString().padLeft(2, '0')}:${(remainingTime % 60).toString().padLeft(2, '0')}",
+                          "${(remainingTime ~/ 60).toString().padLeft(
+                              2, '0')}:${(remainingTime % 60)
+                              .toString()
+                              .padLeft(2, '0')}",
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w400,
@@ -215,13 +223,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount:
-                        questionList[currentQuestionIndex].answers?.length ?? 0,
+                    questionList[currentQuestionIndex].answers?.length ?? 0,
                     itemBuilder: (context, index) {
                       return option(
                         index,
                         questionList[currentQuestionIndex]
-                                .answers![index]
-                                .answer ??
+                            .answers![index]
+                            .answer ??
                             "",
                         currentQuestionIndex, // Pass the current question index
                       );
@@ -244,11 +252,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           ),
                           onPressed: currentQuestionIndex > 0
                               ? () {
-                                  setState(() {
-                                    currentQuestionIndex--;
-                                    selectedOption = -1;
-                                  });
-                                }
+                            setState(() {
+                              currentQuestionIndex--;
+                              selectedOption = -1;
+                            });
+                          }
                               : null,
                           child: Text(
                             "Back",
@@ -257,6 +265,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         ),
                       ),
                     ),
+
+
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -264,9 +274,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(vertical: 14.h),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.r)),
+                             borderRadius: BorderRadius.circular(10.r)),
                             backgroundColor: AppColors.kBlue,
-                            side: BorderSide(color: AppColors.kBlue),
+                            side: const BorderSide(color: AppColors.kBlue),
                           ),
                           onPressed: () {
                             if (currentQuestionIndex < totalQuestions - 1) {
@@ -274,18 +284,22 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                 currentQuestionIndex++;
                                 selectedOption = -1;
                               });
+
+                             cheekQuestionAnswer.add(CheckQuestionAnswer(
+                               questionId:viewModel.questionsList[currentQuestionIndex].id ,
+                               correct:correct ?? "A1"
+                             ));
+
+
                             } else {
-                              var results = submitAnswers();
                               timer?.cancel();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ExamScoreScreen(
-                                      correctAnswers: results['correctAnswers'],
-                                      wrongAnswers: results['wrongAnswers'],
-                                      scorePercentage:
-                                          results['scorePercentage'],
-                                    ),
+                                    builder: (context) =>
+                                        ExamScoreScreen(
+                                       quesion: cheekQuestionAnswer,
+                                        ),
                                   ));
                             }
                           },
@@ -306,19 +320,22 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             child: Text("Error loading questions: ${state.exception}"),
           );
         }
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },
     );
   }
 
+  String ?  correct ;
   Widget option(int value, String text, int questionIndex) {
     return Padding(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       child: InkWell(
         onTap: () {
           setState(() {
+            print(questionList[questionIndex].answers?[value].key.toString());
+            correct =questionList[questionIndex].answers?[value].key.toString();
             selectedOptions[questionIndex] = value;
           });
         },
@@ -352,22 +369,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     );
   }
 
-  Map<String, dynamic> submitAnswers() {
-    int correctAnswers = 0;
-    int wrongAnswers = 0;
-    for (int i = 0; i < questionList.length; i++) {
-      if (selectedOptions[i] != null && selectedOptions[i] == questionList[i].correct) {
-        correctAnswers++;
-      } else {
-        wrongAnswers++;
-      }
+  void submit(){
+    for (var element in cheekQuestionAnswer) {
+      print(element.questionId);
+      print(element.correct);
     }
-    int totalQuestions = questionList.length;
-    double scorePercentage = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
-    return {
-      'correctAnswers': correctAnswers,
-      'wrongAnswers': wrongAnswers,
-      'scorePercentage': scorePercentage,
-    };
   }
+
+
+
 }
