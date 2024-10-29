@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,10 +8,10 @@ import '../../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../data/mdoel/response/gel_all_exams_model/Exams.dart';
 
 class GetAllExamsContainer extends StatelessWidget {
-  final Exams exams;
+  final Exams exam;
   final String subjectIcon;
   GetAllExamsContainer({
-    required this.exams,
+    required this.exam,
     required this.subjectIcon,
   });
   @override
@@ -21,11 +22,11 @@ class GetAllExamsContainer extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => StartExamScreen(
-                      examId: exams.id.toString(),
-                      examName: exams.title.toString(),
-                      duration: exams.duration.toString(),
-                      minutes: exams.duration.toString(),
-                      noOfQuestions: exams.numberOfQuestions.toString(),
+                      examId: exam.id.toString(),
+                      examName: exam.title.toString(),
+                      duration: exam.duration.toString(),
+                      minutes: exam.duration.toString(),
+                      noOfQuestions: exam.numberOfQuestions.toString(),
                       subjectIcon: subjectIcon.toString(),
                     )));
       },
@@ -67,19 +68,19 @@ class GetAllExamsContainer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            exams.title ?? "",
+                            exam.title ?? "",
                             style: AppFonts.font16BlueWeight500.copyWith(
                                 color: AppColors.kBlack,
                                 decoration: TextDecoration.none),
                           ),
-                          Text("${exams.duration} Minutes",
+                          Text("${exam.duration} Minutes",
                               style: AppFonts.font13BlackWeight400.copyWith(
                                 color: AppColors.kBlue,
                                 decoration: TextDecoration.none,
                               )),
                         ],
                       ),
-                      Text("${exams.numberOfQuestions} Question",
+                      Text("${exam.numberOfQuestions} Question",
                           style: AppFonts.font13BlackWeight400.copyWith(
                             decoration: TextDecoration.none,
                           )),

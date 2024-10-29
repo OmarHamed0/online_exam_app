@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:online_exam/config/routes/page_route_name.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
 import 'package:online_exam/core/styles/fonts/app_fonts.dart';
 import 'package:online_exam/core/styles/images/app_images.dart';
-import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/question_screen/questions_screen.dart';
 
 class AppDialogs {
   static Future<void> showLoading({
@@ -25,7 +23,8 @@ class AppDialogs {
   }
 
   static void showErrorDialog(
-      {required BuildContext context, required String errorMassage}) {showDialog(
+      {required BuildContext context, required String errorMassage}) {
+    showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.kWhite,
@@ -50,55 +49,54 @@ class AppDialogs {
     );
   }
 
- /******************** static void
-  showTimedOut({
-    required BuildContext context,
-  }) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppColors.kWhite,
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+  static Future<void> showTimeOutDialog(
+      {required BuildContext context, required onPressedViewScore}) {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              backgroundColor: AppColors.kWhite,
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(AppImages.sandClock),
-                  SizedBox(width: 5.w),
-                  Text('Time out !!',
-                    style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.kError),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(AppImages.sandClock),
+                        SizedBox(width: 5.w),
+                        Text(
+                          'Time out !!',
+                          style: TextStyle(
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.kError),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 12.h, horizontal: 50.w),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.r)),
+                        backgroundColor: AppColors.kBlue,
+                        side: BorderSide(color: AppColors.kBlue),
+                      ),
+                      onPressed: () => onPressedViewScore(),
+                      child: Text(
+                        "View Score",
+                        style: TextStyle(
+                            color: AppColors.kWhite,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 12.h,horizontal: 50.w),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.r)),
-                  backgroundColor: AppColors.kBlue,
-                  side: BorderSide(color: AppColors.kBlue),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  submitAnswers();                },
-                child: Text(
-                  "View Score",
-                  style: TextStyle(color: AppColors.kWhite,fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  } **************/
+            ));
+  }
 }

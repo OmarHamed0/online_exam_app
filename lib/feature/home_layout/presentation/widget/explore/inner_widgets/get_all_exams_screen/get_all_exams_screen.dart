@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/dependency_injection/di.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/subject_model/subjects.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_cubit.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_state.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/get_all_exams_screen/widgets/get_all_exams%20_container.dart';
 import '../../../../../../../config/routes/page_route_name.dart';
 import '../../../../../../../core/styles/colors/app_colors.dart';
-import '../../../../../data/mdoel/response/get_all_qeastions_model/Subject.dart';
 
 class GetAllExamsScreen extends StatelessWidget {
   static String routeName = "specificSubjectScreen";
@@ -60,7 +58,7 @@ class GetAllExamsScreen extends StatelessWidget {
                               ),
                               itemBuilder: (context, index) {
                                 return GetAllExamsContainer(
-                                  exams: viewModel.examsList[index], subjectIcon: subjectIcon.toString(),
+                                  exam: viewModel.examsList[index], subjectIcon: subjectIcon.toString(),
                                 );
                               }))
                       : Center(
