@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/GetUserHistoryModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/check_questions_model/CheckQuestionsModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exams_model/GetAllExamsModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart';
@@ -69,13 +70,26 @@ class HomeLayoutApiMangerImpl implements HomeLayoutApiManger {
   Future<CheckQuestionsModel?> checkQuestions(
       CheckQuestionsRequest request) async {
     var token = await TokenManger.getToken();
-    var response = await _dio.post(ApiConstants.checkQuestionsApi,
-        options: Options(
-          headers: {"token": token},
-        ),
-      data: request.toJson(),);
+    var response = await _dio.post(
+      ApiConstants.checkQuestionsApi,
+      options: Options(
+        headers: {"token": token},
+      ),
+      data: request.toJson(),
+    );
     CheckQuestionsModel checkQuestions =
         CheckQuestionsModel.fromJson(response.data);
     return checkQuestions;
+  }
+
+  @override
+  Future<GetUserHistoryModel?> getUserHistoryModel() async {
+    var token = await TokenManger.getToken();
+    var response = await _dio.get(ApiConstants.getUserHistoryApi,
+        options: Options(headers: {"token": token}));
+    GetUserHistoryModel getUserHistory = GetUserHistoryModel.fromJson(
+      response.data,
+    );
+    return getUserHistory;
   }
 }

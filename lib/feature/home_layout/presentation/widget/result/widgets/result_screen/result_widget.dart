@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
+import 'package:online_exam/feature/home_layout/presentation/view_model/result/result_screen_view_model/result_screen_cubit.dart';
+import 'package:online_exam/feature/home_layout/presentation/view_model/result/result_screen_view_model/result_screen_states.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/result/widgets/result_screen/widgets/result_container.dart';
 
 import '../../../../../../../core/styles/fonts/app_fonts.dart';
 
-class ResultWidget extends StatelessWidget {
+class ResultScreen extends StatelessWidget {
   static const String routeName = "ResultScreen";
 
   @override

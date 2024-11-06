@@ -9,6 +9,7 @@ import 'package:online_exam/feature/splash/splash_view.dart';
 import '../../feature/auth/presentation/login/view/login_view.dart';
 import '../../feature/home_layout/presentation/widget/explore/inner_widgets/get_all_exams_screen/get_all_exams_screen.dart';
 import '../../feature/home_layout/presentation/widget/explore/inner_widgets/question_screen/questions_screen.dart';
+import '../../feature/home_layout/presentation/widget/result/widgets/result_screen/result_widget.dart';
 import '../../feature/home_layout/view/home_layout_view.dart';
 class AppRoutes {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -25,6 +26,8 @@ class AppRoutes {
         return _handleMaterialPageRoute(widget:  MainHomeScreen());
         case PageRouteName.resultAnswerScreen:
         return _handleMaterialPageRoute(widget: ResultAnswerScreen());
+        case PageRouteName.resultScreen:
+        return _handleMaterialPageRoute(widget: ResultScreen());
       default:
         return _handleMaterialPageRoute(widget: const Scaffold());
     }

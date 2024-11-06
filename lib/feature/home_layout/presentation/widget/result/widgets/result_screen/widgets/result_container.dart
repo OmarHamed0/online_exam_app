@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../../../../config/routes/page_route_name.dart';
 import '../../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../../../core/styles/images/app_images.dart';
 class ResultContainer extends StatelessWidget {
-  const ResultContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,8 @@ class ResultContainer extends StatelessWidget {
                               decoration: TextDecoration.none),
                         ), Padding(
                           padding: EdgeInsets.only(left: 85.w),
-                          child: Text("30 Minutes",style: AppFonts.font13BlackWeight400.copyWith(
+                          child: Text("30 Minutes",
+                              style: AppFonts.font13BlackWeight400.copyWith(
                             decoration: TextDecoration.none,
                           )),
                         ),
@@ -59,6 +58,7 @@ class ResultContainer extends StatelessWidget {
                       height: 15.h,
                     ),
                     Text(
+
                       "18 correct answers in 25 min.",
                       style: AppFonts.font16BlueWeight500.copyWith(
                           fontSize: 12.sp, decoration: TextDecoration.none),

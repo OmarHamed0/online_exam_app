@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,11 +38,10 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
             style: AppFonts.font20BlackWeight500,
           ),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, PageRouteName.mainHome);
-            }
-          ),
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, PageRouteName.mainHome);
+              }),
         ),
         body: BlocBuilder<CheckQuestionsCubit, CheckQuestionsStates>(
           builder: (context, state) {
@@ -81,14 +79,15 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                           radius: 70.00,
                           animation: true,
                           lineWidth: 7.0,
+                          curve: Curves.easeInOut,
+                          backgroundColor: AppColors.kRed,
                           percent: double.parse(state.checkQuestions!.total!
                                   .replaceAll("%", "")) /
                               100,
-                          backgroundColor: AppColors.kRed,
                           progressColor: AppColors.kBlue,
                           center: Text(
                             "${state.checkQuestions!.total!.replaceAll("%", "")}%",
-                           // "${(double.parse(state.checkQuestions!.total!.replaceAll('%', ''))).toStringAsFixed(0)}%",
+                            // "${(double.parse(state.checkQuestions!.total!.replaceAll('%', ''))).toStringAsFixed(0)}%",
                             style: AppFonts.font20BlackWeight500,
                           ),
                         ),
@@ -147,7 +146,7 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
-                          vertical: 12.h, horizontal: 120.w),
+                          vertical: 15.h, horizontal: 120.w),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.r)),
                       backgroundColor: AppColors.kBlue,
@@ -155,7 +154,7 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                     ),
                     onPressed: () {
                       Navigator.pushReplacementNamed(
-                          context, PageRouteName.resultAnswerScreen);
+                          context, PageRouteName.resultScreen);
                     },
                     child: Text(
                       "Show Results",
@@ -164,12 +163,12 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 25.h,
+                    height: 20.h,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 130.w, vertical: 12.h),
+                          horizontal: 130.w, vertical: 15.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.r),
                       ),
@@ -177,7 +176,8 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                       side: BorderSide(color: AppColors.kBlue, width: 1.w),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, PageRouteName.mainHome);
+                      Navigator.pushReplacementNamed(
+                          context, PageRouteName.mainHome);
                     },
                     child: Text(
                       "Start again",

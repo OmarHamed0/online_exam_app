@@ -6,7 +6,7 @@ sealed class GetAllExamsStates {}
 class GetAllExamsInitialStat extends GetAllExamsStates {}
 
 class GetAllExamsErrorStat extends GetAllExamsStates {
-  final Exception? errorMessage;
+  final String? errorMessage;
   GetAllExamsErrorStat({required this.errorMessage});
 }
 

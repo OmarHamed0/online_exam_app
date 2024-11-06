@@ -3,11 +3,12 @@ import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeas
 
 @immutable
 sealed class GetAllQuestionsStates {}
+class GetAllQuestionsEmptyState extends GetAllQuestionsStates {}
 
 class GetAllQuestionsInitialState extends GetAllQuestionsStates {}
 
 class GetAllQuestionsErrorState extends GetAllQuestionsStates {
-  final Exception? errorMassage;
+  final String? errorMassage;
   GetAllQuestionsErrorState({required this.errorMassage});
 }
 

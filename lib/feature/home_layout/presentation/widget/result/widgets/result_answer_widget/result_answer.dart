@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Questions.dart';
 
 import '../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../core/styles/fonts/app_fonts.dart';
@@ -8,7 +9,6 @@ import '../../../explore/inner_widgets/question_screen/widgets/question_answer_c
 
 class ResultAnswerScreen extends StatelessWidget {
   static String routeName = "resultAnswerScreen";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +38,7 @@ class ResultAnswerScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-          //      child: QuestionAnswerContainer(),
+            //    child: QuestionAnswerContainer(question:{} ,),
               ),
             ),
             Padding(

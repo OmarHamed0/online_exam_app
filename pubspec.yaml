@@ -56,6 +56,8 @@ dev_dependencies:
     sdk: flutter
   injectable_generator: ^2.4.0
   build_runner: ^2.4.9
+  mockito: ^5.4.4
+
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

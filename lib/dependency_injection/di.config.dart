@@ -70,6 +70,8 @@ import '../feature/home_layout/domain/use_case/explore/get_all_subject_use_case.
     as _i417;
 import '../feature/home_layout/domain/use_case/profile/get_profile_data_use_case.dart'
     as _i712;
+import '../feature/home_layout/domain/use_case/result/get_user_history_use_case.dart'
+    as _i312;
 import '../feature/home_layout/presentation/view_model/explore/check_questions_view_model/check_questions_cubit.dart'
     as _i59;
 import '../feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_cubit.dart'
@@ -80,8 +82,8 @@ import '../feature/home_layout/presentation/view_model/explore/get_all_subjects_
     as _i338;
 import '../feature/home_layout/presentation/view_model/profile/profile_cubit.dart'
     as _i394;
-import '../feature/home_layout/presentation/view_model/result/profile_cubit.dart'
-    as _i842;
+import '../feature/home_layout/presentation/view_model/result/result_screen_view_model/result_screen_cubit.dart'
+    as _i460;
 import '../feature/home_layout/view/view_model/home_layout_cubit.dart' as _i15;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -96,15 +98,15 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i15.MainHomeCubit>(() => _i15.MainHomeCubit());
-    gh.factory<_i410.ResultRemoteDataSource>(
-        () => _i931.ResultRemoteDataSourceImpl());
     gh.factory<_i863.AuthApiManger>(() => _i188.AuthApiMangerImpl());
-    gh.factory<_i930.ResultRepository>(() => _i610.ResultRepositoryImpl());
     gh.factory<_i139.ExploreOfflineDataSource>(
         () => _i124.ExploreOfflineDataSourceImpl());
     gh.factory<_i712.GetProfileDataUseCase>(() => _i712.GetProfileDataUseCase(
         profileRepository: gh<_i323.ProfileRepository>()));
     gh.factory<_i37.HomeLayoutApiManger>(() => _i323.HomeLayoutApiMangerImpl());
+    gh.factory<_i410.ResultRemoteDataSource>(() =>
+        _i931.ResultRemoteDataSourceImpl(
+            apiManger: gh<_i37.HomeLayoutApiManger>()));
     gh.factory<_i298.ExploreRemoteDataSource>(() =>
         _i514.ExploreRemoteDataSourceImpl(
             apiManger: gh<_i37.HomeLayoutApiManger>()));
@@ -128,8 +130,10 @@ extension GetItInjectableX on _i174.GetIt {
         _i417.GetAllSubjectsUseCase(repository: gh<_i755.ExploreRepository>()));
     gh.factory<_i394.ProfileCubit>(
         () => _i394.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
-    gh.factory<_i842.ProfileCubit>(
-        () => _i842.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
+    gh.factory<_i930.ResultRepository>(() => _i610.ResultRepositoryImpl(
+          resultOfflineDataSource: gh<_i99.ResultOfflineDataSource>(),
+          resultRemoteDataSource: gh<_i410.ResultRemoteDataSource>(),
+        ));
     gh.factory<_i253.RegisterUseCase>(
         () => _i253.RegisterUseCase(authRepository: gh<_i3.AuthRepository>()));
     gh.factory<_i226.VerifyResetCodeUseCase>(() =>
@@ -144,6 +148,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i855.GetAllExamsCubit(useCase: gh<_i1054.GetAllExamsUseCase>()));
     gh.factory<_i673.GetAllQuestionsCubit>(() => _i673.GetAllQuestionsCubit(
         useCase: gh<_i647.GetAllQuestionsUseCase>()));
+    gh.factory<_i312.GetUserHistoryUseCase>(() =>
+        _i312.GetUserHistoryUseCase(repository: gh<_i930.ResultRepository>()));
     gh.factory<_i338.ExploreCubit>(
         () => _i338.ExploreCubit(useCase: gh<_i417.GetAllSubjectsUseCase>()));
     gh.factory<_i59.CheckQuestionsCubit>(() =>
@@ -155,6 +161,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i122.RegisterCubit>(
         () => _i122.RegisterCubit(gh<_i253.RegisterUseCase>()));
+    gh.factory<_i460.ResultScreenCubit>(() =>
+        _i460.ResultScreenCubit(useCase: gh<_i312.GetUserHistoryUseCase>()));
     gh.factory<_i228.LoginCubit>(
         () => _i228.LoginCubit(gh<_i549.LoginUseCase>()));
     return this;
