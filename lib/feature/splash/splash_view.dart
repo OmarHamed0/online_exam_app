@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
 
   _navigateToInitialRoute()async{
     var token=await TokenManger.getToken();
-    String initialRoute=token !=null ? PageRouteName.mainHome:
+    String initialRoute=token !=null ? PageRouteName.login:
     PageRouteName.login;
     return  Navigator.of(context).pushNamedAndRemoveUntil
       (  initialRoute

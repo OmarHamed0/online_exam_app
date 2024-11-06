@@ -99,4 +99,13 @@ class AppDialogs {
               ),
             ));
   }
+
+
+
+  static void  showHideDialog (BuildContext context){
+    if(Navigator.canPop(context)){
+      Navigator.pop(context);
+    }
+  }
+
 }

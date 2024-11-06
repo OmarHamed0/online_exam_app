@@ -4,6 +4,7 @@ import 'package:online_exam/feature/auth/presentation/forget_password/view/forge
 import 'package:online_exam/feature/auth/presentation/register/view/register_view.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/exam_score_screen/exam_score_screen.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/start_exam_widget/start_exam_screen.dart';
+import 'package:online_exam/feature/home_layout/presentation/widget/profile/reset_password_view.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/result/widgets/result_answer_widget/result_answer.dart';
 import 'package:online_exam/feature/splash/splash_view.dart';
 import '../../feature/auth/presentation/login/view/login_view.dart';
@@ -21,6 +22,9 @@ class AppRoutes {
         return _handleMaterialPageRoute(widget: const RegisterView());
       case PageRouteName.forgetPassword:
         return _handleMaterialPageRoute(widget: const ForgetPasswordView());
+      case PageRouteName.resetPassword:
+        return _handleMaterialPageRoute(widget:  ResetPasswordView());
+
       case PageRouteName.mainHome:
         return _handleMaterialPageRoute(widget:  MainHomeScreen());
         case PageRouteName.resultAnswerScreen:

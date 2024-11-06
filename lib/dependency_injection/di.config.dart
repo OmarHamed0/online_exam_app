@@ -42,6 +42,10 @@ import '../feature/home_layout/data/data_source/explore/explore_remote_data_sour
     as _i298;
 import '../feature/home_layout/data/data_source/explore/explore_remote_data_source/explore_remote_data_source_impl.dart'
     as _i514;
+import '../feature/home_layout/data/data_source/profile/profile_remote_data_source/profile_remote_data_source.dart'
+    as _i873;
+import '../feature/home_layout/data/data_source/profile/profile_remote_data_source/profile_remote_data_source_impl.dart'
+    as _i841;
 import '../feature/home_layout/data/data_source/result/result_offline_data_source/result_offline_data_source.dart'
     as _i99;
 import '../feature/home_layout/data/data_source/result/result_offline_data_source/result_offline_data_source_impl.dart'
@@ -52,6 +56,8 @@ import '../feature/home_layout/data/data_source/result/result_remote_data_source
     as _i931;
 import '../feature/home_layout/data/repository/explore_repository_impl.dart'
     as _i743;
+import '../feature/home_layout/data/repository/profile_repository_impl.dart'
+    as _i596;
 import '../feature/home_layout/data/repository/result_repository_impl.dart'
     as _i610;
 import '../feature/home_layout/domain/repository/explore_repository.dart'
@@ -68,8 +74,12 @@ import '../feature/home_layout/domain/use_case/explore/get_all_questions_use_cas
     as _i647;
 import '../feature/home_layout/domain/use_case/explore/get_all_subject_use_case.dart'
     as _i417;
-import '../feature/home_layout/domain/use_case/profile/get_profile_data_use_case.dart'
-    as _i712;
+import '../feature/home_layout/domain/use_case/profile/change_password_use_case.dart'
+    as _i435;
+import '../feature/home_layout/domain/use_case/profile/edit_profile_use_case.dart'
+    as _i430;
+import '../feature/home_layout/domain/use_case/profile/get_user_info_use_case.dart'
+    as _i721;
 import '../feature/home_layout/presentation/view_model/explore/check_questions_view_model/check_questions_cubit.dart'
     as _i59;
 import '../feature/home_layout/presentation/view_model/explore/get_all_exams_view_model/get_all_exams_cubit.dart'
@@ -78,10 +88,10 @@ import '../feature/home_layout/presentation/view_model/explore/get_all_questions
     as _i673;
 import '../feature/home_layout/presentation/view_model/explore/get_all_subjects_view_model/get_all_subjects_cubit.dart'
     as _i338;
-import '../feature/home_layout/presentation/view_model/profile/profile_cubit.dart'
-    as _i394;
-import '../feature/home_layout/presentation/view_model/result/profile_cubit.dart'
-    as _i842;
+import '../feature/home_layout/presentation/view_model/profile/profile/profile_cubit.dart'
+    as _i798;
+import '../feature/home_layout/presentation/view_model/profile/reset_password/reset_password_cubit.dart'
+    as _i614;
 import '../feature/home_layout/view/view_model/home_layout_cubit.dart' as _i15;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -102,8 +112,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i930.ResultRepository>(() => _i610.ResultRepositoryImpl());
     gh.factory<_i139.ExploreOfflineDataSource>(
         () => _i124.ExploreOfflineDataSourceImpl());
-    gh.factory<_i712.GetProfileDataUseCase>(() => _i712.GetProfileDataUseCase(
-        profileRepository: gh<_i323.ProfileRepository>()));
     gh.factory<_i37.HomeLayoutApiManger>(() => _i323.HomeLayoutApiMangerImpl());
     gh.factory<_i298.ExploreRemoteDataSource>(() =>
         _i514.ExploreRemoteDataSourceImpl(
@@ -118,6 +126,9 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i3.AuthRepository>(() => _i461.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i649.AuthRemoteDataSource>()));
+    gh.factory<_i873.ProfileRemoteDataSource>(() =>
+        _i841.ProfileRemoteDataSourceImpl(
+            homeLayoutApiManger: gh<_i37.HomeLayoutApiManger>()));
     gh.factory<_i35.CheckQuestionsUseCase>(() =>
         _i35.CheckQuestionsUseCase(repository: gh<_i755.ExploreRepository>()));
     gh.factory<_i1054.GetAllExamsUseCase>(() =>
@@ -126,10 +137,6 @@ extension GetItInjectableX on _i174.GetIt {
         repository: gh<_i755.ExploreRepository>()));
     gh.factory<_i417.GetAllSubjectsUseCase>(() =>
         _i417.GetAllSubjectsUseCase(repository: gh<_i755.ExploreRepository>()));
-    gh.factory<_i394.ProfileCubit>(
-        () => _i394.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
-    gh.factory<_i842.ProfileCubit>(
-        () => _i842.ProfileCubit(gh<_i712.GetProfileDataUseCase>()));
     gh.factory<_i253.RegisterUseCase>(
         () => _i253.RegisterUseCase(authRepository: gh<_i3.AuthRepository>()));
     gh.factory<_i226.VerifyResetCodeUseCase>(() =>
@@ -142,10 +149,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i203.ResetPasswordUseCase(gh<_i3.AuthRepository>()));
     gh.factory<_i855.GetAllExamsCubit>(
         () => _i855.GetAllExamsCubit(useCase: gh<_i1054.GetAllExamsUseCase>()));
+    gh.factory<_i323.ProfileRepository>(() => _i596.ProfileRepositoryImpl(
+        profileRemoteDataSource: gh<_i873.ProfileRemoteDataSource>()));
     gh.factory<_i673.GetAllQuestionsCubit>(() => _i673.GetAllQuestionsCubit(
         useCase: gh<_i647.GetAllQuestionsUseCase>()));
     gh.factory<_i338.ExploreCubit>(
         () => _i338.ExploreCubit(useCase: gh<_i417.GetAllSubjectsUseCase>()));
+    gh.singleton<_i721.GetUserInfoUseCase>(
+        () => _i721.GetUserInfoUseCase(gh<_i323.ProfileRepository>()));
+    gh.factory<_i435.ChangePasswordUseCase>(
+        () => _i435.ChangePasswordUseCase(gh<_i323.ProfileRepository>()));
+    gh.factory<_i430.EditProfileUseCase>(
+        () => _i430.EditProfileUseCase(gh<_i323.ProfileRepository>()));
     gh.factory<_i59.CheckQuestionsCubit>(() =>
         _i59.CheckQuestionsCubit(useCase: gh<_i35.CheckQuestionsUseCase>()));
     gh.factory<_i447.ForgetPasswordCubit>(() => _i447.ForgetPasswordCubit(
@@ -157,6 +172,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i122.RegisterCubit(gh<_i253.RegisterUseCase>()));
     gh.factory<_i228.LoginCubit>(
         () => _i228.LoginCubit(gh<_i549.LoginUseCase>()));
+    gh.factory<_i798.ProfileCubit>(() => _i798.ProfileCubit(
+          gh<_i721.GetUserInfoUseCase>(),
+          gh<_i430.EditProfileUseCase>(),
+        ));
+    gh.factory<_i614.ResetPasswordCubit>(
+        () => _i614.ResetPasswordCubit(gh<_i435.ChangePasswordUseCase>()));
     return this;
   }
 }
