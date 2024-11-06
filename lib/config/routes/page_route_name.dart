@@ -11,4 +11,5 @@ class PageRouteName{
   static const String questionsScreen="questionsScreen";
   static const String resultAnswerScreen="resultAnswerScreen";
   static const String examScoreScreen="examScoreScreen";
+  static const String resultScreen="resultScreen";
 }

@@ -10,7 +10,7 @@ sealed class GetAllSubjectsStates {}
 class GetAllSubjectsInitialState extends GetAllSubjectsStates {}
 
 class GetAllSubjectsErrorState extends GetAllSubjectsStates {
-  final Exception? errorMessage;
+  final String? errorMessage;
   GetAllSubjectsErrorState({required this.errorMessage});
 }
 

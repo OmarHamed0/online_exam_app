@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/core/styles/fonts/app_fonts.dart';
 import 'package:online_exam/core/utils/functions/dialogs/app_dialogs.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_cubite.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/explore/get_all_questions_view_model/get_all_questions_state.dart';
@@ -60,18 +61,31 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           return Center(
               child: Text("Error loading questions: ${state.errorMassage}"));
         } else if (state is GetAllQuestionsTimeOutState) {
-          AppDialogs.showTimeOutDialog(
-            context: context,
-            onPressedViewScore: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ExamScoreScreen(
-                            question: viewModel.cheekQuestionAnswer,
-                          )));
-            },
-          );
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            AppDialogs.showTimeOutDialog(
+              context: context,
+              onPressedViewScore: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ExamScoreScreen(
+                              question: viewModel.cheekQuestionAnswer,
+                            )));
+              },
+            );
+          });
+
           return Container();
+        } else if (state is GetAllQuestionsEmptyState) {
+          return Scaffold(
+            backgroundColor: AppColors.kWhite,
+            body: Center(
+              child: Text(
+                "No questions available",
+                style: AppFonts.font20BlackWeight500,
+              ),
+            ),
+          );
         }
         return Center(child: Text("Unexpected state"));
       },
@@ -228,7 +242,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             viewModel.nextQuestion();
           } else {
             viewModel.stopTimer();
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => ExamScoreScreen(

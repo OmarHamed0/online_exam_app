@@ -11,5 +11,6 @@ class ApiConstants{
   static const String editProfile = "api/v1/auth/editProfile";
   static const String getAllExamsApi = "api/v1/exams";
   static const String getAllQuestionsApi = "api/v1/questions";
+  static const String getUserHistoryApi = "api/v1/questions/history";
   static const String checkQuestionsApi = "api/v1/questions/check";
 }

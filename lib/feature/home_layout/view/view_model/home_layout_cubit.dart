@@ -13,8 +13,8 @@ class MainHomeCubit extends Cubit<MainHomeStates> {
 
   List<Widget> tabs = [
     ExploreScreen(),
-    ResultWidget(),
-    ProfileView(),
+    ResultScreen(),
+    ProfileWidget(),
   ];
   void changeBottomNavigationBar(int newSelectedIndex) {
     MainHomeInitialStates();

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/core/api/api_result.dart';
+import 'package:online_exam/core/base/base_view_model.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Questions.dart';
 import 'package:online_exam/feature/home_layout/domain/use_case/explore/get_all_questions_use_case.dart';
@@ -9,7 +10,7 @@ import 'package:online_exam/feature/home_layout/presentation/view_model/explore/
 import '../../../../data/mdoel/request/CheckQuestionsRequesrt.dart';
 
 @injectable
-class GetAllQuestionsCubit extends Cubit<GetAllQuestionsStates> {
+class GetAllQuestionsCubit extends BaseViewModel<GetAllQuestionsStates> {
   GetAllQuestionsUseCase useCase;
   List<CheckQuestionAnswer> cheekQuestionAnswer = [];
   List<Questions> questionList = [];
@@ -26,12 +27,15 @@ class GetAllQuestionsCubit extends Cubit<GetAllQuestionsStates> {
     var result = await useCase.invoke(examId);
     if (result is Success<GetAllQuestionsModel?>) {
       questionList = result.data?.questions ?? [];
-      selectedOptions = List.filled(questionList.length, null);
-      startTimer(duration);
-
-      emit(GetAllQuestionsSuccessState(getAllQuestions: result.data));
+      if (questionList.isEmpty) {
+        emit(GetAllQuestionsEmptyState());
+      } else {
+        selectedOptions = List.filled(questionList.length, null);
+        startTimer(duration);
+        emit(GetAllQuestionsSuccessState(getAllQuestions: result.data));
+      }
     } else if (result is Fail<GetAllQuestionsModel?>) {
-      emit(GetAllQuestionsErrorState(errorMassage: result.exception));
+      emit(GetAllQuestionsErrorState(errorMassage:getErrorMassageFromException(result.exception)));
     }
   }
 

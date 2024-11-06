@@ -7,7 +7,7 @@ import '../../data/mdoel/response/subject_model/Subject_model.dart';
 
 abstract class ExploreRepository {
   Future<Result<SubjectModel?>> getAllSubjects();
-  Future<Result<GetAllExamsModel?>>getAllExams(String subjectId);
-  Future<Result<GetAllQuestionsModel?>>getAllQuestions(String examId);
-  Future<Result<CheckQuestionsModel?>>checkQuestions(CheckQuestionsRequest request);
+  Future<Result<GetAllExamsModel?>> getAllExams(String subjectId);
+  Future<Result<GetAllQuestionsModel?>> getAllQuestions(String examId);
+  Future<Result<CheckQuestionsModel?>> checkQuestions(CheckQuestionsRequest request);
 }
