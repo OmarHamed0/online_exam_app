@@ -22,7 +22,6 @@ void main() {
       when(mockRepository.getAllSubjects())
           .thenAnswer((_) async => Success(data: testSubjectModel));
       final result = await useCase.invoke();
-
       expect(result, isA<Success<SubjectModel?>>());
       expect((result as Success).data, equals(testSubjectModel));
     });
