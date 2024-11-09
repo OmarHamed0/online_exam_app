@@ -4,8 +4,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'package:online_exam/feature/home_layout/data/mdoel/response/subject_model/Subject_model.dart'
-    as _i10;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
@@ -18,6 +16,8 @@ import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exam
     as _i6;
 import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart'
     as _i7;
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Subject.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/subject_model/Subject_model.dart';
 import 'package:online_exam/feature/home_layout/domain/repository/explore_repository.dart'
     as _i2;
 
@@ -43,16 +43,20 @@ class MockExploreRepository extends _i1.Mock implements _i2.ExploreRepository {
   }
 
   @override
-  @override
-  _i3.Future<_i4.Result<_i10.SubjectModel?>> getAllSubjects() =>
-      (super.noSuchMethod(
+  _i3.Future<_i4.Result<SubjectModel?>> getAllSubjects() => (super.noSuchMethod(
         Invocation.method(
           #getAllSubjects,
           [],
         ),
-        returnValue: _i3.Future<_i4.Result<_i10.SubjectModel?>>.value(
-            _i4.Success(data: _i10.SubjectModel())),
-      ) as _i3.Future<_i4.Result<_i10.SubjectModel?>>);
+        returnValue: _i3.Future<_i4.Result<SubjectModel?>>.value(
+            _i5.dummyValue<_i4.Result<SubjectModel?>>(
+          this,
+          Invocation.method(
+            #getAllSubjects,
+            [],
+          ),
+        )),
+      ) as _i3.Future<_i4.Result<SubjectModel?>>);
 
   @override
   _i3.Future<_i4.Result<_i6.GetAllExamsModel?>> getAllExams(

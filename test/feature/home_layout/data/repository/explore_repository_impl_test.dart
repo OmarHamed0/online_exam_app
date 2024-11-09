@@ -30,6 +30,7 @@ void main() {
     provideDummy<Result<GetAllExamsModel?>>(Success<GetAllExamsModel?>(data: null));
     provideDummy<Result<GetAllQuestionsModel?>>(Success<GetAllQuestionsModel?>(data: null));
     provideDummy<Result<CheckQuestionsModel?>>(Success<CheckQuestionsModel?>(data: null));
+    provideDummy<Result<SubjectModel?>>(Success<SubjectModel?>(data: null));
   });
 
   // getAllSubjects
@@ -116,6 +117,5 @@ void main() {
       expect((result as Fail).exception.toString(), equals("Exception: failed checkQuestions"));
     });
   });
-
 
 }
