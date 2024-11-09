@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/core/api/api_result.dart';
 import 'package:online_exam/core/base/base_view_model.dart';
