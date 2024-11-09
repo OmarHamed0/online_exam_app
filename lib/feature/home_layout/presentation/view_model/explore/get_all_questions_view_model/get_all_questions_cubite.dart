@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/core/api/api_result.dart';
 import 'package:online_exam/core/base/base_view_model.dart';
@@ -73,7 +72,7 @@ class GetAllQuestionsCubit extends BaseViewModel<GetAllQuestionsStates> {
   void nextQuestion() {
     if (currentQuestionIndex < questionList.length - 1) {
       currentQuestionIndex++;
-      emit(GetAllQuestionsSuccessState(getAllQuestions: null));
+      emit(GetAllQuestionsSuccessState(getAllQuestions: GetAllQuestionsModel(questions: questionList)));
     }
   }
 
