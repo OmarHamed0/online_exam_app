@@ -8,7 +8,7 @@ import '../../../../../data/mdoel/response/subject_model/subjects.dart';
 class ExploreContainer extends StatelessWidget {
   final Subjects subject;
 
-  ExploreContainer({required this.subject});
+  const ExploreContainer({super.key, required this.subject});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,7 +33,7 @@ class ExploreContainer extends StatelessWidget {
                 color: AppColors.kBlack.withOpacity(0.1),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ],
           ),

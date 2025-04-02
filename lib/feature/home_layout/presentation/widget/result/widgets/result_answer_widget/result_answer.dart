@@ -1,23 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Questions.dart';
 
 import '../../../../../../../core/styles/colors/app_colors.dart';
 import '../../../../../../../core/styles/fonts/app_fonts.dart';
-import '../../../explore/inner_widgets/question_screen/widgets/question_answer_container.dart';
 
 class ResultAnswerScreen extends StatelessWidget {
   static String routeName = "resultAnswerScreen";
+
+  const ResultAnswerScreen({super.key});
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         title: Text(
           "Answers",
           style: AppFonts.font20BlackWeight500,
         ),
-        leading: Icon(Icons.arrow_back_ios_rounded),
+        leading: const Icon(Icons.arrow_back_ios_rounded),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -32,13 +33,12 @@ class ResultAnswerScreen extends StatelessWidget {
                         color: AppColors.kWhite.withOpacity(0.7),
                         spreadRadius: 8,
                         blurRadius: 10,
-                        offset: Offset(0, 6),
+                        offset: const Offset(0, 6),
                       )
                     ],
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-            //    child: QuestionAnswerContainer(question:{} ,),
               ),
             ),
             Padding(
@@ -51,13 +51,12 @@ class ResultAnswerScreen extends StatelessWidget {
                         color: AppColors.kWhite.withOpacity(0.7),
                         spreadRadius: 8,
                         blurRadius: 10,
-                        offset: Offset(0, 6),
+                        offset: const Offset(0, 6),
                       )
                     ],
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-             //   child: QuestionAnswerContainer(),
               ),
             ),
             Padding(
@@ -70,32 +69,12 @@ class ResultAnswerScreen extends StatelessWidget {
                         color: AppColors.kWhite.withOpacity(0.7),
                         spreadRadius: 8,
                         blurRadius: 10,
-                        offset: Offset(0, 6),
+                        offset: const Offset(0, 6),
                       )
                     ],
                     borderRadius: BorderRadius.circular(12.r),
                     border:
                         Border.all(color: AppColors.kLightWhite, width: 3.w)),
-            //    child: QuestionAnswerContainer(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Container(
-                height: 370.h,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.kWhite.withOpacity(0.7),
-                        spreadRadius: 8,
-                        blurRadius: 10,
-                        offset: Offset(0, 6),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(12.r),
-                    border:
-                        Border.all(color: AppColors.kLightWhite, width: 3.w)),
-             //   child: QuestionAnswerContainer(),
               ),
             ),
           ],

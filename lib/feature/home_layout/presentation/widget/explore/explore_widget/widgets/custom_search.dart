@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +17,7 @@ class CustomSearch extends StatelessWidget {
             decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                contentPadding: EdgeInsets.all(0.8),
+                contentPadding: const EdgeInsets.all(0.8),
                 hintText: "Search ",
                 hintStyle: TextStyle(
                   fontSize: 14.sp,

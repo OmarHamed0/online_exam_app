@@ -1,17 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
-import 'package:online_exam/feature/home_layout/presentation/view_model/result/result_screen_view_model/result_screen_cubit.dart';
-import 'package:online_exam/feature/home_layout/presentation/view_model/result/result_screen_view_model/result_screen_states.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/result/widgets/result_screen/widgets/result_container.dart';
-
 import '../../../../../../../core/styles/fonts/app_fonts.dart';
+
 
 class ResultScreen extends StatelessWidget {
   static const String routeName = "ResultScreen";
 
+  const ResultScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,39 +39,41 @@ class ResultScreen extends StatelessWidget {
               child: GridView.builder(
                   itemCount: 2,
                   scrollDirection: Axis.vertical,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     childAspectRatio: 2.8,
                   ),
                   itemBuilder: (context, index) {
-                    return ResultContainer();
+                    return const ResultContainer();
                   })),
-          SizedBox(
-            height: 20.h,
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "Language",
-                  style: AppFonts.font18BlackWeight600
-                      .copyWith(fontWeight: FontWeight.w500),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-              child: GridView.builder(
-                  itemCount: 5,
-                  scrollDirection: Axis.vertical,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          /*********************
+                    SizedBox(
+                    height: 20.h,
+                    ),
+                    Row(
+                    children: [
+                    Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                    "Language",
+                    style: AppFonts.font18BlackWeight600
+                    .copyWith(fontWeight: FontWeight.w500),
+                    ),
+                    ),
+                    ],
+                    ),
+                    Expanded(
+                    child: GridView.builder(
+                    itemCount: 5,
+                    scrollDirection: Axis.vertical,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     childAspectRatio: 2.5,
-                  ),
-                  itemBuilder: (context, index) {
+                    ),
+                    itemBuilder: (context, index) {
                     return ResultContainer();
-                  }))
+                    }))
+                 *******************/
         ],
       ),
     );

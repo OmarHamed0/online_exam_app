@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Exam.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/explore/inner_widgets/start_exam_widget/widgets/start_exam_container.dart';
-import '../../../../../../../config/routes/page_route_name.dart';
 
 class StartExamScreen extends StatelessWidget {
   static String routeName = "startExamScreen";
@@ -13,7 +10,7 @@ class StartExamScreen extends StatelessWidget {
   final String noOfQuestions;
   final String subjectIcon;
 
-  StartExamScreen({
+  const StartExamScreen({super.key, 
     required this.examId,
     required this.examName,
     required this.duration,
@@ -28,7 +25,7 @@ class StartExamScreen extends StatelessWidget {
           leading: InkWell(
               onTap: () {
               },
-              child: Icon(Icons.arrow_back_ios_rounded)),
+              child: const Icon(Icons.arrow_back_ios_rounded)),
         ),
         body: StartExamContainer(
           examId: examId.toString(),

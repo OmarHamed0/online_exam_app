@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../../core/styles/colors/app_colors.dart';
@@ -12,7 +11,7 @@ class StartExamContainer extends StatelessWidget {
   final String minutes;
   final String noOfQuestions;
   final String subjectIcon;
-  StartExamContainer({
+  const StartExamContainer({super.key, 
     required this.examId,
     required this.examName,
     required this.duration,
@@ -50,7 +49,7 @@ class StartExamContainer extends StatelessWidget {
                 ],
               ),
               Text(
-                "${minutes} Minutes",
+                "$minutes Minutes",
                 style: AppFonts.font13BlackWeight400.copyWith(
                     color: AppColors.kBlue, decoration: TextDecoration.none),
               ),
@@ -77,19 +76,19 @@ class StartExamContainer extends StatelessWidget {
                 width: 5.w,
               ),
               Text(
-                "${noOfQuestions} Questions",
+                "$noOfQuestions Questions",
                 style: AppFonts.font16GrayWeight400,
               ),
             ],
           ),
         ),
-        Divider(
+        const Divider(
           thickness: 0.5,
         ),
         SizedBox(
           height: 10.h,
         ),
-        Column(
+        const Column(
           children: [],
         ),
         Row(
@@ -186,14 +185,14 @@ class StartExamContainer extends StatelessWidget {
                           duration: duration.toString(),
                         )));
           },
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 150.w, vertical: 15.h),
+            backgroundColor: AppColors.kBlue,
+          ),
           child: Text(
             "Start",
             style:
                 AppFonts.font16BlueWeight500.copyWith(color: AppColors.kWhite),
-          ),
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 150.w, vertical: 15.h),
-            backgroundColor: AppColors.kBlue,
           ),
         ),
       ],

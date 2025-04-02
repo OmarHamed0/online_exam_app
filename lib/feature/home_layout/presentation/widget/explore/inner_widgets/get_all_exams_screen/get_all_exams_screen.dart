@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +13,7 @@ class GetAllExamsScreen extends StatelessWidget {
   final String subjectId;
   final String subjectName;
   final String subjectIcon;
-  GetAllExamsScreen({
+  GetAllExamsScreen({super.key, 
     required this.subjectId,
     required this.subjectName,
     required this.subjectIcon,
@@ -38,7 +37,7 @@ class GetAllExamsScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(context, PageRouteName.mainHome);
                 },
-                child: Icon(Icons.arrow_back_ios_rounded)),
+                child: const Icon(Icons.arrow_back_ios_rounded)),
           ),
           body: Column(
             children: [
@@ -52,7 +51,7 @@ class GetAllExamsScreen extends StatelessWidget {
                               itemCount: viewModel.examsList.length,
                               scrollDirection: Axis.vertical,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 1,
                                 childAspectRatio: 2.5,
                               ),
@@ -71,7 +70,7 @@ class GetAllExamsScreen extends StatelessWidget {
                           ),
                         )
                   : state is GetAllExamsLoadingStat
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                             color: AppColors.kBlue,
                           ),
@@ -81,13 +80,13 @@ class GetAllExamsScreen extends StatelessWidget {
                               child: Text(
                                 state.errorMessage?.toString() ??
                                     "An error occurred.",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                   color: AppColors.kRed,
                                 ),
                               ),
                             )
-                          : SizedBox.shrink(),
+                          : const SizedBox.shrink(),
             ],
           ),
         );

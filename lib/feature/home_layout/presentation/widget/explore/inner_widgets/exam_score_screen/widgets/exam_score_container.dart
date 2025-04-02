@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/check_questions_model/CheckQuestionsModel.dart';
@@ -10,7 +9,7 @@ import '../../../../../../../../core/styles/fonts/app_fonts.dart';
 
 class ExamScoreContainer extends StatelessWidget {
 final CheckQuestionsModel checkQuestions;
- ExamScoreContainer({required this.checkQuestions});
+ const ExamScoreContainer({super.key, required this.checkQuestions});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -97,7 +96,7 @@ final CheckQuestionsModel checkQuestions;
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.r)),
             backgroundColor: AppColors.kBlue,
-            side: BorderSide(color: AppColors.kBlue),
+            side: const BorderSide(color: AppColors.kBlue),
           ),
           onPressed: () {
             Navigator.pushReplacementNamed(
@@ -122,7 +121,7 @@ final CheckQuestionsModel checkQuestions;
             side: BorderSide(color: AppColors.kBlue, width: 1.w),
           ),
           onPressed: () {},
-          child: Text(
+          child: const Text(
             "Start again",
             style: TextStyle(
                 color: AppColors.kBlue, fontWeight: FontWeight.w500),

@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -17,43 +16,35 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
-
   @override
   void initState() {
     _navigateAfterDelay();
     super.initState();
   }
 
-
-  _navigateToInitialRoute()async{
-    var token=await TokenManger.getToken();
-    String initialRoute=token !=null ? PageRouteName.login:
-    PageRouteName.login;
-    return  Navigator.of(context).pushNamedAndRemoveUntil
-      (  initialRoute
-    , (route) => false,)  ;
-
+  _navigateToInitialRoute() async {
+    var token = await TokenManger.getToken();
+    String initialRoute =
+        token != null ? PageRouteName.login : PageRouteName.login;
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      initialRoute,
+      (route) => false,
+    );
   }
-   _navigateAfterDelay(){
+
+  _navigateAfterDelay() {
     Timer(
       const Duration(seconds: 3),
       () => _navigateToInitialRoute(),
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.kWhite,
-      child: Lottie.asset(
-        AppImages.splash2,
-        height: double.infinity,
-        width: double.infinity,
-        fit: BoxFit.contain
-      ),
+      child: Lottie.asset(AppImages.splash2,
+          height: double.infinity, width: double.infinity, fit: BoxFit.contain),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +18,7 @@ class QuestionsScreen extends StatefulWidget {
   final String examName;
   final String duration;
 
-  QuestionsScreen({
+  const QuestionsScreen({super.key, 
     required this.examId,
     required this.examName,
     required this.duration,
@@ -51,7 +50,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       bloc: viewModel,
       builder: (context, state) {
         if (state is GetAllQuestionsLoadingState) {
-          return Center(
+          return const Center(
               child: CircularProgressIndicator(
             color: AppColors.kBlue,
           ));
@@ -61,7 +60,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           return Center(
               child: Text("Error loading questions: ${state.errorMassage}"));
         } else if (state is GetAllQuestionsTimeOutState) {
-          WidgetsBinding.instance?.addPostFrameCallback((_) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
             AppDialogs.showTimeOutDialog(
               context: context,
               onPressedViewScore: () {
@@ -87,7 +86,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
           );
         }
-        return Center(child: Text("Unexpected state"));
+        return const Center(child: Text("Unexpected state"));
       },
     );
   }
@@ -146,7 +145,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: AutoSizeText(
+                  child:Text(
                     questionList[viewModel.currentQuestionIndex].question ?? "",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -200,14 +199,14 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           backgroundColor: Colors.white,
-          side: BorderSide(color: AppColors.kBlue),
+          side: const BorderSide(color: AppColors.kBlue),
         ),
         onPressed: viewModel.currentQuestionIndex > 0
             ? () {
                 setState(() => viewModel.currentQuestionIndex--);
               }
             : null,
-        child: Text(
+        child: const Text(
           "Back",
           style: TextStyle(color: AppColors.kBlue),
         ),
@@ -265,17 +264,18 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   String? correct;
   Widget option(int value, String text) {
     return Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: InkWell(
-          onTap: () {
+          onTap: ()async {
             correct = viewModel.questionList[viewModel.currentQuestionIndex]
                 .answers?[value].key
                 .toString();
             viewModel.selectOption(
                 viewModel.currentQuestionIndex, value, correct ?? "0");
+
           },
           child: Container(
-            padding: EdgeInsets.all(7),
+            padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
               color:
                   viewModel.selectedOptions[viewModel.currentQuestionIndex] ==

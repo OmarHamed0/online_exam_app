@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:online_exam/core/api/api_result.dart';
-import 'package:online_exam/feature/auth/domain/entity/user.dart';
 import 'package:online_exam/feature/auth/domain/usecase/verify_reset_code_use_case.dart';
 
 import 'auth_repository_mock.mocks.dart';

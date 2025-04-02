@@ -1,6 +1,7 @@
 /// currentPage : 1
 /// numberOfPages : 1
 /// limit : 40
+library;
 
 class Metadata {
   Metadata({

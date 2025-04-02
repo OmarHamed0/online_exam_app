@@ -55,11 +55,11 @@ class CustomTextFromField extends StatelessWidget {
         floatingLabelStyle:
             MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
           if (states.contains(MaterialState.error)) {
-            return TextStyle(color: AppColors.kRed);
+            return const TextStyle(color: AppColors.kRed);
           } else if (states.contains(MaterialState.focused)) {
             return TextStyle(color: AppColors.kGray);
           }
-          return TextStyle(color: Colors.grey);
+          return const TextStyle(color: Colors.grey);
         }),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         labelStyle: TextStyle(
@@ -89,7 +89,7 @@ class CustomTextFromField extends StatelessWidget {
             color: AppColors.kRed,
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.kRed,
           ),

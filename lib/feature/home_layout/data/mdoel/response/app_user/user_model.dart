@@ -1,5 +1,4 @@
 
-import '../../../../domain/entities/app_user_entity.dart';
 
 /// _id : "67113b7570966b47d2983207"
 /// username : "eleovate"
@@ -10,6 +9,7 @@ import '../../../../domain/entities/app_user_entity.dart';
 /// role : "user"
 /// isVerified : false
 /// createdAt : "2024-10-17T16:29:41.003Z"
+library;
 
 class UserModel {
   UserModel({

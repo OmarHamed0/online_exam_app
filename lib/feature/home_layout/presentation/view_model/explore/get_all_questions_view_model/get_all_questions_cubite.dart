@@ -40,7 +40,7 @@ class GetAllQuestionsCubit extends BaseViewModel<GetAllQuestionsStates> {
 
   void startTimer(int duration) {
     remainingTime = duration * 60;
-    timer = Timer.periodic(Duration(seconds: 1), (_) {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (remainingTime > 0) {
         remainingTime--;
         emit(GetAllQuestionsSuccessState(getAllQuestions: null));

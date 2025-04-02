@@ -5,7 +5,6 @@ sealed class ForgetPasswordState {}
 
 final class ForgetPasswordInitial extends ForgetPasswordState {}
 class ForgetPasswordLoadingStata extends ForgetPasswordState{}
-class UpdateValidationState extends ForgetPasswordState{}
 class ForgetPasswordSuccessStata extends ForgetPasswordState{
   final String ? success;
   ForgetPasswordSuccessStata({required this.success});
@@ -17,6 +16,7 @@ class ForgetPasswordErrorStata extends ForgetPasswordState{
 }
 
 
+class UpdateValidationState extends ForgetPasswordState{}
 
 class EmailVerifyCodeLoadingStata extends ForgetPasswordState{}
 class EmailVerifyCodeSuccessStata extends ForgetPasswordState{
@@ -28,7 +28,6 @@ class EmailVerifyCodeErrorStata extends ForgetPasswordState{
   final String ? errorMassage;
   EmailVerifyCodeErrorStata({required this.errorMassage});
 }
-
 
 
 class ResetPasswordLoadingStata extends ForgetPasswordState{}

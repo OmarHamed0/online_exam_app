@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/feature/auth/presentation/forget_password/view_model/forget_password_cubit.dart';
 import 'package:online_exam/feature/auth/presentation/forget_password/view_model/forget_password_event.dart';
 import 'package:online_exam/feature/auth/presentation/forget_password/widget/email_verification_widget/widget/pin_code_field_widget.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../../../core/styles/fonts/app_fonts.dart';
 import '../../../../../../core/utils/functions/dialogs/app_dialogs.dart';

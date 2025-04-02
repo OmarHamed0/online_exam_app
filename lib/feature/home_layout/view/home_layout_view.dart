@@ -9,6 +9,8 @@ class MainHomeScreen extends StatelessWidget {
   static String routeName = "MainHomeScreen";
   var viewModel = getIt.get<MainHomeCubit>();
 
+  MainHomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainHomeCubit, MainHomeStates>(

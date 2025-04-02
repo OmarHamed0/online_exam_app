@@ -1,9 +1,8 @@
 
-import 'package:online_exam/feature/home_layout/data/mdoel/response/GetUserHistoryModel.dart';
 
 import '../../../../core/api/api_result.dart';
+import '../entities/cached_exam_result_entity.dart';
 
-abstract class ResultRepository{
-  Future<Result<GetUserHistoryModel?>> getUserHistory();
-
+abstract class GetExamByIdRepository{
+  Future<Result<List<CachedExamResultEntity>>> getExamById();
 }

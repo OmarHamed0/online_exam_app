@@ -24,7 +24,7 @@ void main() {
 
   //forgetPassword
   group("forgetPassword - AuthRepositoryImpl", () {
-    const String testEmail = "testtEmail@123";
+    const  testEmail = "testtEmail@123";
     test(
         "should return Success for forgetPassword when remote call is successful",
         () async {

@@ -13,6 +13,8 @@ class ExploreScreen extends StatelessWidget {
   static  String routeName = "ExploreScreen";
   var viewModel = getIt.get<ExploreCubit>();
 
+  ExploreScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExploreCubit, GetAllSubjectsStates>(
@@ -20,6 +22,8 @@ class ExploreScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
+                backgroundColor: AppColors.kWhite,
+              forceMaterialTransparency: true,
               title: Text("Survery",
                   style: AppFonts.font16BlueWeight500.copyWith(
                     decoration: TextDecoration.none,
@@ -28,7 +32,7 @@ class ExploreScreen extends StatelessWidget {
             ),
             body: Column(
               children: [
-                CustomSearch(),
+                const CustomSearch(),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -54,7 +58,7 @@ class ExploreScreen extends StatelessWidget {
                       itemCount: viewModel.subjectList.length,
                       scrollDirection: Axis.vertical,
                       gridDelegate:
-                      SliverGridDelegateWithFixedCrossAxisCount(
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
                         crossAxisSpacing: 5,
                         childAspectRatio: 3.1,

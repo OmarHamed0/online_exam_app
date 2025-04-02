@@ -1,5 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/styles/colors/app_colors.dart';
@@ -10,7 +8,7 @@ import '../../../../../../data/mdoel/response/gel_all_exams_model/Exams.dart';
 class GetAllExamsContainer extends StatelessWidget {
   final Exams exam;
   final String subjectIcon;
-  GetAllExamsContainer({
+  const GetAllExamsContainer({super.key, 
     required this.exam,
     required this.subjectIcon,
   });
@@ -41,7 +39,7 @@ class GetAllExamsContainer extends StatelessWidget {
                 color: AppColors.kBlack.withOpacity(0.1),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ],
           ),
@@ -84,6 +82,11 @@ class GetAllExamsContainer extends StatelessWidget {
                           style: AppFonts.font13BlackWeight400.copyWith(
                             decoration: TextDecoration.none,
                           )),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Text("From: 14     To: 6:00",
+                          style: AppFonts.font13BlackWeight400)
                     ],
                   ),
                 ),

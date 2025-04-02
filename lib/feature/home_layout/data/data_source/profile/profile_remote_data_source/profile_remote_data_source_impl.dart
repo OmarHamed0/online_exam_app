@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam/feature/home_layout/data/data_source/profile/profile_remote_data_source/profile_remote_data_source.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/request/change_password_request.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/request/edit_user_info_request.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/change_password/change_password_response.dart';
 import 'package:online_exam/feature/home_layout/domain/entities/change_password_entity.dart';
 
 import '../../../../../../core/api/api_result.dart';

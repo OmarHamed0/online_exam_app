@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/core/base/base_view.dart';
 import 'package:online_exam/feature/home_layout/presentation/view_model/profile/profile/profile_cubit.dart';
 import 'package:online_exam/feature/home_layout/presentation/widget/profile/widget/profile_form_field_widget.dart';
-
 import '../../../../../core/styles/images/app_images.dart';
 import '../../../../../core/utils/functions/dialogs/app_dialogs.dart';
 import '../../../../../dependency_injection/di.dart';
@@ -30,6 +29,7 @@ class _ProfileViewState extends BaseView<ProfileView,ProfileCubit> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
+              forceMaterialTransparency: true,
               title: Text(viewModel.titleAppBar()),
               leading: viewModel.isFormField==false
                   ? IconButton(

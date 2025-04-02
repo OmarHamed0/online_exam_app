@@ -8,13 +8,12 @@ import 'home_layout_states.dart';
 
 @injectable
 class MainHomeCubit extends Cubit<MainHomeStates> {
-  MainHomeCubit() : super(MainHomeInitialStates());
   int selectedIndex = 0;
-
-  List<Widget> tabs = [
+  MainHomeCubit() : super(MainHomeInitialStates());
+  List<Widget> get tabs => [
     ExploreScreen(),
-    ResultScreen(),
-    ProfileWidget(),
+    const ResultScreen(),
+    const ProfileView(),
   ];
   void changeBottomNavigationBar(int newSelectedIndex) {
     MainHomeInitialStates();

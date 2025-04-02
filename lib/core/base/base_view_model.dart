@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BaseViewModel<T > extends Cubit<T>{
-
    BaseViewModel(super.initialState);
 
    AppLocalizations? appLocalizations;
@@ -10,11 +9,9 @@ class BaseViewModel<T > extends Cubit<T>{
       if(exception is DioException){
          return _mapDioExceptionToMessage(exception);
       }else {
-         return appLocalizations!.unknown;
+         return appLocalizations?.unknown ?? 'Unknown error occurred';
       }
    }
-
-
 
    String _mapDioExceptionToMessage(DioException dioException) {
       switch (dioException.type) {

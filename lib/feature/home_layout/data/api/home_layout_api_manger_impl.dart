@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/request/change_password_request.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/request/edit_user_info_request.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/app_user/app_user_model.dart';

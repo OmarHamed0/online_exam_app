@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/GetUserHistoryModel.dart';
+
+import '../../../../domain/entities/cached_exam_result_entity.dart';
 
 @immutable
 sealed class ResultScreenStates {}
@@ -17,6 +18,26 @@ class ResultScreenLoadingStat extends ResultScreenStates {
 }
 
 class ResultScreenSuccessStat extends ResultScreenStates {
-  final GetUserHistoryModel? getUserHistory;
-  ResultScreenSuccessStat({required this.getUserHistory});
+  List<CachedExamResultEntity> exam;
+  ResultScreenSuccessStat(this.exam);
+}
+class NavigateToResultScreenState extends ResultScreenStates{
+  CachedExamResultEntity exam;
+  NavigateToResultScreenState(this.exam);
+}
+class GetExamAnswersState extends ResultScreenStates{}
+
+
+sealed class ResultScreenActions{}
+
+class GetResultExamByIdAction extends ResultScreenActions{
+}
+class GetExamQuestionsAction extends ResultScreenActions{
+  String examId;
+  GetExamQuestionsAction(this.examId);
+}
+
+class NavigateToExamResultAction extends ResultScreenActions{
+  CachedExamResultEntity exam;
+  NavigateToExamResultAction(this.exam);
 }

@@ -1,11 +1,11 @@
 class CheckQuestionsEntity {
   CheckQuestionsEntity({
-      this.message, 
-      this.correct, 
-      this.wrong, 
-      this.total, 
-      this.wrongQuestions, 
-      this.correctQuestions,});
+    this.message,
+    this.correct,
+    this.wrong,
+    this.total,
+    this.wrongQuestions,
+    this.correctQuestions,});
 
   CheckQuestionsEntity.fromJson(dynamic json) {
     message = json['message'];

@@ -1,8 +1,8 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:online_exam/core/styles/fonts/app_fonts.dart';
 import 'package:online_exam/dependency_injection/di.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/request/CheckQuestionsRequesrt.dart';
@@ -16,7 +16,7 @@ class ExamScoreScreen extends StatefulWidget {
   static String routeName = "ExamScoreScreen";
   List<CheckQuestionAnswer> question;
 
-  ExamScoreScreen({
+  ExamScoreScreen({super.key,
     required this.question,
   });
 
@@ -28,6 +28,10 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
   var viewModel = getIt.get<CheckQuestionsCubit>();
   @override
   Widget build(BuildContext context) {
+    var answersBox = Hive.box('answersBox');
+
+    int correctAnswers = answersBox.values.where((answer) => answer['isCorrect'] == true).length;
+    int totalQuestions = answersBox.length;
     return BlocProvider(
       create: (context) => viewModel
         ..checkQuestions(CheckQuestionsRequest(answers: widget.question)),
@@ -38,7 +42,7 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
             style: AppFonts.font20BlackWeight500,
           ),
           leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, PageRouteName.mainHome);
               }),
@@ -46,11 +50,11 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
         body: BlocBuilder<CheckQuestionsCubit, CheckQuestionsStates>(
           builder: (context, state) {
             if (state is CheckQuestionsLoadingStat) {
-              return CircularProgressIndicator(
+              return const CircularProgressIndicator(
                 color: AppColors.kBlue,
               );
             } else if (state is CheckQuestionsErrorStat) {
-              return CircularProgressIndicator(
+              return const CircularProgressIndicator(
                 color: Colors.yellow,
               );
             } else if (state is CheckQuestionsSuccessStat) {
@@ -150,11 +154,11 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.r)),
                       backgroundColor: AppColors.kBlue,
-                      side: BorderSide(color: AppColors.kBlue),
+                      side: const BorderSide(color: AppColors.kBlue),
                     ),
                     onPressed: () {
                       Navigator.pushReplacementNamed(
-                          context, PageRouteName.resultScreen);
+                          context, PageRouteName.resultAnswerScreen);
                     },
                     child: Text(
                       "Show Results",
@@ -179,7 +183,7 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                       Navigator.pushReplacementNamed(
                           context, PageRouteName.mainHome);
                     },
-                    child: Text(
+                    child: const Text(
                       "Start again",
                       style: TextStyle(
                           color: AppColors.kBlue, fontWeight: FontWeight.w500),
@@ -188,7 +192,7 @@ class _ExamScoreScreenState extends State<ExamScoreScreen> {
                 ],
               );
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         ),

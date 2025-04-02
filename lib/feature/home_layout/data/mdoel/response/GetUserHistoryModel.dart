@@ -27,8 +27,8 @@ class History {
       this.checkAnswer, 
       this.qid, 
       this.user, 
-      this.chosenAnswer, 
-      this.avgAnswerTime, 
+      this.chosenAnswer,
+      this.avgAnswerTime,
       this.createdAt,});
 
   History.fromJson(dynamic json) {

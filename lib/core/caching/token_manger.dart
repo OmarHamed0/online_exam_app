@@ -15,7 +15,4 @@ class TokenManger {
   static Future<void> deleteToken() async {
     return await SecureStorageFunction.deleteData(key: tokenKey);
   }
-
-
-
 }

@@ -4,12 +4,13 @@ import 'package:online_exam/feature/home_layout/data/data_source/explore/explore
 import 'package:online_exam/feature/home_layout/data/data_source/explore/explore_remote_data_source/explore_remote_data_source.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/check_questions_model/CheckQuestionsModel.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/gel_all_exams_model/GetAllExamsModel.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Exam.dart';
 import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/GetAllQuestionsModel.dart';
-import 'package:online_exam/feature/home_layout/data/mdoel/response/get_exam_by_id_model/GetExamByIdModel.dart';
+import 'package:online_exam/feature/home_layout/data/mdoel/response/get_all_qeastions_model/Questions.dart';
 import 'package:online_exam/feature/home_layout/domain/repository/explore_repository.dart';
-
 import '../mdoel/request/CheckQuestionsRequesrt.dart';
 import '../mdoel/response/subject_model/Subject_model.dart';
+
 
 @Injectable(as: ExploreRepository)
 class ExploreRepositoryImpl implements ExploreRepository {
@@ -36,6 +37,18 @@ class ExploreRepositoryImpl implements ExploreRepository {
   @override
   Future<Result<CheckQuestionsModel?>> checkQuestions(CheckQuestionsRequest request) {
 return exploreRemoteDataSource.checkQuestions(request);
+  }
+
+  @override
+  Future<Result<void>> addExam(Exam exam, List<Questions?> questions) {
+    // TODO: implement addExam
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<List<Exam>>> getExamsList() {
+    // TODO: implement getExamsList
+    throw UnimplementedError();
   }
 
 
